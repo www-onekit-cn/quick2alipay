@@ -1,0 +1,9 @@
+<image
+src="{{src}}"
+class="onekit-image {{Class}}"
+style="{{Style}}"
+onLoad="image_load"
+mode="{{mode}}"
+>
+<slot></slot>
+</image>

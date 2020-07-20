@@ -1,0 +1,4 @@
+@import '/onekit/onekit.acss';
+page {
+  background: #f7f7f7;
+}

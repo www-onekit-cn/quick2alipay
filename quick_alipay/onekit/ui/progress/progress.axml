@@ -1,0 +1,1 @@
+<progress show-info="{{true}}" percent="{{60}}"></progress>

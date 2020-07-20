@@ -1,0 +1,7 @@
+
+        <onekit-video Class="flex-1 {{objectFitClass}}" 
+          autoplay="true" onprepared="preparedfn" onstart="startfn" onpause="pausefn" onfinish="finishfn"
+          onerror="errorfn" onseeking="seekingfn" onseeked="seekedfn" ontimeupdate="timeupdatefn" id="video"
+          src="https://swsdl.vivo.com.cn/appstore/developer/uploadfile/20180323/20180323183010837.mp4"
+          controls muted="{{muted}}"></onekit-video>
+       

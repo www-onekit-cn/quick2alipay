@@ -1,0 +1,2 @@
+<button onTap=""="shareText" > 点击分享文本</button>
+<button onTap="shareImage" >选取图片分享</button>
