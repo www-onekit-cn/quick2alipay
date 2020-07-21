@@ -1,3 +1,20 @@
-<view>
-  New Component
-</view>
+<swiper
+class="onekit-swiper {{Class}}"
+style="{{Style}}"
+current="{{index}}"
+autoplay="{{autoplay}}"
+interval="{{interval}}"
+indicator-dots="{{indicator}}"
+loop="{{loop}}"
+duration="{{duration}}"
+vertical="{{vertical}}"
+previous-margin="{{previousmargin}}"
+next-margin="{{nextmargin}}"
+>
+<swiper-item>
+<slot>
+</slot>
+</swiper-item>
+<slot>
+</slot>
+</swiper>

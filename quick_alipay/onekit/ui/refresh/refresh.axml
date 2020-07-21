@@ -1,3 +1,10 @@
-<view>
-  New Component
+<view
+class="onekit-refresh {{Class}}"
+style="{{Style}} "
+disabled="{{disabled}}"
+aria-label=""
+aria-unfocusable="{{}}"
+forcedark ="true"
+>
+<slot></slot>
 </view>

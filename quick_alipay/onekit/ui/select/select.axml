@@ -2,7 +2,7 @@
 <view>
   {{text}}<text style="float:right">▾</text>
 </view>
-<view class="onekit-select-box" a:if="{{show}}" bindonekit_option_change="option_change">
+<view class="onekit-select-box" a:if="{{show}}" bindonekit-option_change="option_change">
     <slot/>
   </view>
   </view>
