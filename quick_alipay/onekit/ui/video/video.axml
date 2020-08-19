@@ -1,7 +1,7 @@
 
 <video 
-class="onekit-video {{Class}}"
-style="{{Style}}"
+class="onekit-video {{onekitClass}}"
+style="{{onekitStyle}}"
 src="{{src}}"
 autoplay="{{autoplay}}"
 poster="{{poster}}"

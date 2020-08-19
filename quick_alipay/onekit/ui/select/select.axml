@@ -1,4 +1,4 @@
-<view class="onekit-select {{Class}}" style="{{Style}}" onTap="select_click">
+<view class="onekit-select {{onekitClass}}" style="{{onekitStyle}}" onTap="select_click">
 <view>
   {{text}}<text style="float:right">▾</text>
 </view>

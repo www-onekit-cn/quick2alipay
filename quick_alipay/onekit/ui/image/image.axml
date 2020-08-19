@@ -1,7 +1,7 @@
 <image
 src="{{src}}"
-class="onekit-image {{Class}}"
-style="{{Style}}"
+class="onekit-image {{onekitClass}}"
+style="{{onekitStyle}}"
 onLoad="image_load"
 mode="{{mode}}"
 >

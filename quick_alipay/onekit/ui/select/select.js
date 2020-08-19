@@ -4,8 +4,8 @@ Component({
     show:false
   },
   props: {
-    Class:"",
-    Style:""
+    onekitClass:"",
+    onekitStyle:""
   },
   didMount() {},
   didUpdate() {},
