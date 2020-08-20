@@ -1,10 +1,10 @@
 <view
-
 class="onekit-div {{onekitClass}}"
 style="{{onekitStyle}}"
+id="{{onekitId}}"
 disabled="{{disabled}}"
-aria-label=""
-aria-unfocusable="{{}}"
+aria-label="{{ariaLabel}}"
+aria-unfocusable="{{ariaUnfocusable}}"
 forcedark ="true"
 
 >

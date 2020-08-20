@@ -1,6 +1,9 @@
 Component({
   mixins: [],
   data: {
+    onekitClass:'',
+    onekitStyle:'',
+    onekitId:'',
     show:false
   },
   props: {

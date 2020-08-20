@@ -5,6 +5,9 @@ Component({
     height: 0,
   },
   props: {
+    onekitClass:'',
+    onekitStyle:'',
+    onekitId:'',
     src:'',
     mode:'scaleToFill'
   },

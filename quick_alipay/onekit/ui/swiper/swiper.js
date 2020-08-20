@@ -2,6 +2,9 @@ Component({
   mixins: [],
   data: {},
   props: {
+    onekitClass:'',
+    onekitStyle:'',
+    onekitId:'',
     index:0,
     autoplay:false,
     interval:3000,

@@ -1,5 +1,8 @@
 Component({
   props: {
+    onekitClass:'',
+    onekitStyle:'',
+    onekitId:'',
     className: '',
     align: false,
     disabled: false,

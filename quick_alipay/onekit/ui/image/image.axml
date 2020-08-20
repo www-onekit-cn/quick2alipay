@@ -2,6 +2,7 @@
 src="{{src}}"
 class="onekit-image {{onekitClass}}"
 style="{{onekitStyle}}"
+id="{{onekitId}}"
 onLoad="image_load"
 mode="{{mode}}"
 >

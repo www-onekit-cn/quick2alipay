@@ -2,6 +2,7 @@
 <video 
 class="onekit-video {{onekitClass}}"
 style="{{onekitStyle}}"
+id="{{onekitId}}"
 src="{{src}}"
 autoplay="{{autoplay}}"
 poster="{{poster}}"

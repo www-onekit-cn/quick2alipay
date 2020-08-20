@@ -1,6 +1,9 @@
 import fmtUnit from "../../lib/fmtUnit";
 Component({
   props: {
+    onekitClass:'',
+    onekitStyle:'',
+    onekitId:'',
     className: '',
     loadMore: false,
     loadContent: ['', ''],

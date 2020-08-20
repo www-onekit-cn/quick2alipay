@@ -2,6 +2,9 @@ Component({
   mixins: [],
   data: {},
   props: {
+    onekitClass:'',
+    onekitStyle:'',
+    onekitId:'',
     src:"",
     autoplay:true,
     poster:"",

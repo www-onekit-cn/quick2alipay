@@ -5,6 +5,9 @@ Component({
     params:{}
   },
   props: {
+    onekitClass:'',
+    onekitStyle:'',
+    onekitId:'',
     href:"",
   },
   didMount() {},
