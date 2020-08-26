@@ -1,5 +1,5 @@
 <view
-  class="am-list-item onekit-list-item {{last ? 'last': ''}} {{borderRadius ? 'am-list-item-radius' : ''}} {{className}}" 
+  class="am-list-item onekit-list-item {{last ? 'last': ''}} {{borderRadius ? 'am-list-item-radius' : ''}} {{onekitClass}}" 
   style="{{onekitStyle}}"
 	id="{{onekitId}}"
 	hover-class="{{disabled ? '' : 'am-list-item-hover'}}" 

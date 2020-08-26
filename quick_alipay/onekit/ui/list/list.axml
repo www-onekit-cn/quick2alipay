@@ -1,4 +1,4 @@
-<view class="am-list onekit-list {{className}}" style="{{onekitStyle}}" id="{{onekitId}}">
+<view class="am-list onekit-list {{onekitClass}}" style="{{onekitStyle}}" id="{{onekitId}}">
   <view class="am-list-header" a:if="{{$slots.header}}">
     <slot name="header" />
   </view>

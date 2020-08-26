@@ -4,7 +4,6 @@ Component({
     onekitClass:'',
     onekitStyle:'',
     onekitId:'',
-    className: '',
     loadMore: false,
     loadContent: ['', ''],
     loadingSize: fmtUnit('16px')
