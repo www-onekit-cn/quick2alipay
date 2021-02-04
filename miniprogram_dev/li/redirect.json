@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "onekit-view": "../toutiao2alipay/ui/view/view"
+  }
+}

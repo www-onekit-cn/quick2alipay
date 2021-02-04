@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "onekit-view": "../toutiao2alipay/ui/view/view",
+    "onekit-progress": "../toutiao2alipay/ui/progress/progress",
+    "onekit-slider": "../toutiao2alipay/ui/slider/slider",
+    "onekit-switch": "../toutiao2alipay/ui/switch/switch",
+    "onekit-picker": "../toutiao2alipay/ui/picker/picker",
+    "onekit-navigator": "../toutiao2alipay/ui/navigator/navigator",
+    "onekit-video": "../toutiao2alipay/ui/video/video",
+    "onekit-canvas": "../toutiao2alipay/ui/canvas/canvas"
+  }
+}

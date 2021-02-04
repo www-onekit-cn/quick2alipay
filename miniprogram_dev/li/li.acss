@@ -1,0 +1,88 @@
+/* view */
+/* .flex-wrapper {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.flex-item {
+  width: 200rpx;
+  height: 300rpx;
+  text-align: center;
+  line-height: 300rpx;
+  color: #fff;
+}
+
+.flex-item.hover-item {
+  opacity: 0.6;
+}
+
+.flex-item-v {
+  align-self: center;
+  width: 300rpx;
+  height: 160rpx;
+  text-align: center;
+  line-height: 160rpx;
+  color: #fff;
+} */
+
+/* progress */
+/* .onekit-progress{
+  width: 100%;
+}
+.progress-box{
+  display: flex;
+  height: 50rpx;
+  margin-bottom: 60rpx;
+}
+.progress-cancel{
+  margin-left: 40rpx;
+} */
+
+/* switch */
+/* .switch-space {
+    margin-right: 48rpx;
+}
+.ttui-cell-switch {
+   padding-top: 8px;
+   padding-bottom: 8px; 
+} */
+
+/* picker */
+/* .picker{
+  padding: 19rpx 26rpx;
+  background-color: #FFFFFF;
+}
+.page-section {
+  margin-bottom: 32rpx;
+} */
+
+/* video */
+/* .btn-set-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+} */
+
+/* canvas */
+.canvas-intro {
+    text-align: center;
+    margin: 20rpx;
+}
+
+.canvas-item {
+    margin: 20rpx 15rpx;
+    padding: 15rpx;
+    border: 2px #eee dashed;
+    border-radius: 10rpx;
+    font-size: 18px;
+}
+
+.expection {
+    margin: 10rpx 0 0;
+    font-size: 14px;
+}
+
+.nav {
+    text-align: center;
+}

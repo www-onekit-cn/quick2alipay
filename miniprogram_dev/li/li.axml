@@ -1,0 +1,235 @@
+<!-- <view> -->
+<!-- <onekit-view onekit-class="page-body">
+  <onekit-view onekit-class="page-section">
+    <onekit-view onekit-class="page-section-title">
+      <text>flex-direction: row\n横向布局</text>
+    </onekit-view>
+    <onekit-view onekit-class="flex-wrapper" onekit-style="flex-direction:row;">
+      <onekit-view hover-class="hover-item" onekit-class="flex-item" onekit-style="background-color: #73d13d">A</onekit-view>
+      <onekit-view hover-class="hover-item" onekit-class="flex-item" onekit-style="background-color: #13c2c2">B</onekit-view>
+      <onekit-view hover-class="hover-item" onekit-class="flex-item" onekit-style="background-color: #40a9ff">C</onekit-view>
+    </onekit-view>
+  </onekit-view>
+  <onekit-view onekit-class="page-section">
+    <onekit-view onekit-class="page-section-title">
+      <text>flex-direction: column\n纵向布局</text>
+    </onekit-view>
+    <onekit-view onekit-class="flex-wrapper" onekit-style="flex-direction:column;">
+      <onekit-view onekit-class="flex-item-v" onekit-style="background-color: #73d13d">A</onekit-view>
+      <onekit-view onekit-class="flex-item-v" onekit-style="background-color: #13c2c2">B</onekit-view>
+      <onekit-view onekit-class="flex-item-v" onekit-style="background-color: #40a9ff">C</onekit-view>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- <progress> -->
+<!-- <onekit-view onekit-class="container">
+  <onekit-view onekit-class="body body-space">
+    <onekit-view onekit-class="page-section page-section-space">
+      <onekit-view onekit-class="progress-box">
+        <onekit-progress percent="20" show-info stroke-width="3" active-color="red" background-color="gray" active="{{true}}"></onekit-progress>
+      </onekit-view>
+      <onekit-view onekit-class="progress-box">
+        <onekit-progress percent="40" active stroke-width="6"></onekit-progress>
+      </onekit-view>
+      <onekit-view onekit-class="progress-box">
+        <onekit-progress percent="60" active stroke-width="3" active-mode="forwards"></onekit-progress>
+      </onekit-view>
+      <onekit-view onekit-class="progress-box">
+        <onekit-progress percent="80" color="#10AEFF" active stroke-width="3"></onekit-progress>
+      </onekit-view>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- slider -->
+<!-- <onekit-view onekit-class="container">
+  <onekit-view onekit-class="body body-space">
+    <onekit-view onekit-class="page-section page-section-gap">
+      <onekit-view onekit-class="page-section-title">设置step</onekit-view>
+      <onekit-view onekit-class="body-view">
+        <onekit-slider value="60" onChange="slider2change" step="5" disabled="{{false}}" background-color="#e9e9e9" active-color="#1aad19" block-size="28" block-color="#fff" show-value="{{false}}" onChanging="bindchanging"></onekit-slider>
+      </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="page-section page-section-gap">
+      <onekit-view onekit-class="page-section-title">显示当前value</onekit-view>
+      <onekit-view onekit-class="body-view">
+        <onekit-slider value="50" onChange="slider3change" show-value step="1" disabled="{{false}}" background-color="#e9e9e9" active-color="#1aad19" block-size="28" block-color="#fff"></onekit-slider>
+      </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="page-section page-section-gap">
+      <onekit-view onekit-class="page-section-title">设置最小/最大值</onekit-view>
+      <onekit-view onekit-class="body-view">
+        <onekit-slider value="100" onChange="slider4change" min="50" max="200" show-value step="1" disabled="{{false}}" background-color="#e9e9e9" active-color="#1aad19" block-size="28" block-color="#fff"></onekit-slider>
+      </onekit-view>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- switch -->
+<!-- <onekit-view onekit-class="container">
+  <onekit-view onekit-class="body">
+    <onekit-view onekit-class="page-section page-section-space">
+      <onekit-view onekit-class="page-section-title">默认样式</onekit-view>
+      <onekit-view onekit-class="body-view">
+        <onekit-switch checked onChange="switch1Change" type="switch" onekit-class="switch-space" color="#F85959" disabled="{{false}}"></onekit-switch>
+        <onekit-switch onChange="switch2Change"></onekit-switch>
+      </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="page-section">
+      <onekit-view onekit-class="page-section-title page-section-title-space">推荐展示样式</onekit-view>
+      <onekit-view onekit-class="ttui-cells">
+        <onekit-view onekit-class="ttui-cell ttui-cell-switch">
+          <onekit-view onekit-class="ttui-cell__bd">开启中</onekit-view>
+          <onekit-view onekit-class="ttui-cell__ft">
+            <onekit-switch checked type="switch" onekit-class="switch-space" color="#F85959" disabled="{{false}}"></onekit-switch>
+          </onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="ttui-cell ttui-cell-switch">
+          <onekit-view onekit-class="ttui-cell__bd">关闭</onekit-view>
+          <onekit-view onekit-class="ttui-cell__ft">
+            <onekit-switch type="switch" onekit-class="switch-space" color="#F85959" disabled="{{false}}"></onekit-switch>
+          </onekit-view>
+        </onekit-view>
+      </onekit-view>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- picker -->
+<!-- <onekit-view onekit-class="container">
+  <onekit-view onekit-class="body">
+    <onekit-view onekit-class="page-section">
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title page-section-title-space">普通选择器</onekit-view>
+        <onekit-picker mode="selector" onChange="bindPickerChange" value="{{index}}" range="{{array}}" disabled="{{false}}" onCancel="cancel">
+          <onekit-view onekit-class="picker">
+            当前选择：{{array[index]}}
+          </onekit-view>
+        </onekit-picker>
+      </onekit-view>
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title page-section-title-space">普通Object选择器</onekit-view>
+        <onekit-picker onChange="bindObjectPickerChange" value="{{objectIndex}}" range="{{objectArray}}" range-key="en">
+          <onekit-view onekit-class="picker">
+            当前选择：{{objectArray[objectIndex]['en']}}
+          </onekit-view>
+        </onekit-picker>
+      </onekit-view>     
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title page-section-title-space">多列选择器</onekit-view>
+        <onekit-picker mode="multiSelector" onChange="bindMultiPickerChange" onColumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+          <onekit-view onekit-class="picker">
+            当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}
+          </onekit-view>
+        </onekit-picker>
+      </onekit-view>
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title page-section-title-space">时间选择器</onekit-view>
+        <onekit-picker mode="time" value="{{time}}" start="{{timeStart}}" end="{{timeEnd}}" onChange="bindTimeChange">
+          <onekit-view onekit-class="picker">
+            当前选择: {{time}}
+          </onekit-view>
+        </onekit-picker>
+      </onekit-view>  
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title page-section-title-space">日期选择器</onekit-view>
+        <onekit-picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" onChange="bindDateChange" fields="year">
+          <onekit-view onekit-class="picker">
+            当前选择: {{date}}
+          </onekit-view>
+        </onekit-picker>
+      </onekit-view>
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title page-section-title-space">日期选择器</onekit-view>
+        <onekit-picker mode="date" value="{{date1}}" start="2015-09-01" end="2017-09-01" onChange="bindDateChange1" fields="month">
+          <onekit-view onekit-class="picker">
+            当前选择: {{date1}}
+          </onekit-view>
+        </onekit-picker>
+      </onekit-view>
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title page-section-title-space">日期选择器</onekit-view>
+        <onekit-picker mode="date" value="{{date2}}" start="2015-09-01" end="2017-09-01" onChange="bindDateChange2" fields="day">
+          <onekit-view onekit-class="picker">
+            当前选择: {{date2}}
+          </onekit-view>
+        </onekit-picker>
+      </onekit-view>
+      <onekit-view onekit-class="page-section">
+        <onekit-view onekit-class="page-section-title page-section-title-space">省市区选择器</onekit-view>
+        <onekit-picker mode="region" onChange="bindRegionChange" value="{{region}}" custom-item="xxx"> 
+          <onekit-view onekit-class="picker">
+            当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+          </onekit-view>
+        </onekit-picker>
+      </onekit-view>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- <navigator> -->
+<!-- <onekit-view onekit-class="container">
+  <onekit-view onekit-class="body body-space">
+    <onekit-view onekit-class="btn-area">
+      <onekit-navigator url="navigate?title=navigate" open-type="navigate" hover-class="navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
+        <button type="default">跳转到新页面</button>
+      </onekit-navigator>
+      <onekit-navigator url="redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
+        <button type="default">在当前页打开</button>
+      </onekit-navigator>
+      <onekit-navigator delta="1" open-type="navigateBack" hover-class="other-navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
+        <button type="default">返回上一页</button>
+      </onekit-navigator>
+      <onekit-navigator url="/pages/component/index" open-type="switchTab" hover-class="other-navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
+        <button type="default">跳转到首页</button>
+      </onekit-navigator>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- <video> -->
+<!-- <onekit-view onekit-class="container">
+  <onekit-view onekit-class="body body-space-l">
+    <onekit-view onekit-class="page-section">
+      <onekit-video onekit-id="myVideo" src="https://sf1-ttcdn-tos.pstatp.com/obj/developer/sdk/1534422848153.mp4" onError="videoErrorCallback" onekit-style="width: 100%;" show-fullscreen-btn="{{isFullscreen}}" show-play-btn="{{isShowPlayBtn}}" loop="{{isLoopPlay}}" controls="{{isShowControls}}" play-btn-position="{{playBtnPosition}}" object-fit="{{objectFitType}}" poster="{{poster}}" onTimeupdate="bindtimeupdate" onEnded="bindended" onPlay="bindplay" onPause="bindpause" onWaiting="bindwaiting" post-roll-unit-id="{{unitId}}" onAdstart="bindadstart" onAdclose="bindadclose" onAderror="bindaderror" onAdload="bindadload"></onekit-video>
+    </onekit-view>
+    <onekit-view onekit-class="btn-set-row">
+      <button type="mini" size="mini" onTap="switchFullScreen">
+        {{isFullscreen ? '隐藏全屏按钮' : '显示全屏按钮'}}
+      </button>
+      <button type="mini" size="mini" onTap="switchLoopPlay">
+        {{isLoopPlay ? '关闭循环播放' : '开启循环播放'}}
+      </button>
+    </onekit-view>
+    <onekit-view onekit-class="btn-set-row">
+      <button type="mini" size="mini" onTap="switchPlayBtn">
+        {{isShowPlayBtn ? '隐藏播放按钮' : '显示播放按钮'}}
+      </button>
+      <button type="mini" size="mini" onTap="switchControls">
+        {{isShowControls ? '隐藏全部控件' : '显示全部控件'}}
+      </button>
+    </onekit-view>
+    <onekit-view onekit-class="btn-set-row">
+      <button type="mini" size="mini" onTap="switchPlayBtnPosition">
+        {{playBtnPosition === 'center' ? '播放按钮下移' : '播放按钮居中'}}
+      </button>
+      <button type="mini" size="mini" onTap="switchFit">
+        裁剪模式切换
+      </button>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- <canvas> -->
+<onekit-view onekit-class="container">
+  <onekit-view onekit-class="canvas-intro">canvas基础绘画能力</onekit-view>
+	<onekit-view onekit-class="canvas-item">
+		<onekit-canvas canvas-id="{{id}}" onTouchstart="testBindtouchstart" onTouchmove="testBindtouchmove" onTouchend="testBindtouchend" onTouchcancel="testBindtouchcancel" onError="testBinderror" onekit-style="width: {{width+100}}px; height: 100px;border: 1px solid blue"></onekit-canvas>
+		<onekit-view onekit-class="expection">预期：一个小人</onekit-view>
+	</onekit-view>
+	<onekit-view onekit-class="canvas-item">
+		<!-- <onekit-canvas onekit-id="canvas_type_2d" type="2d" onError="testBinderror" onTouchstart="testBindtouchstart" onTouchmove="testBindtouchmove" onTouchcancel="testBindtouchcancel" onTouchend="testBindtouchend" onekit-style="width: {{width+100}}px; height: 100px;border: 1px solid blue" onekit-dataset='"key":{{_("native-2d")}}'></onekit-canvas> -->
+		<onekit-view onekit-class="expection">预期：canvas 2d</onekit-view>
+	</onekit-view>
+</onekit-view>
