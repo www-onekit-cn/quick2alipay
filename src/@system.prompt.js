@@ -14,12 +14,12 @@ module.exports = {
     const quick_duration = quick_object.duration || 0
     let my_duration
     if (quick_duration === 0) {
-      my_duration = 1500
-    } else {
       my_duration = 3000
+    } else {
+      my_duration = 6000
     }
     const my_object = {
-      title: quick_message,
+      content: quick_message,
       duration: my_duration
     }
     my.showToast(my_object)
@@ -35,13 +35,12 @@ module.exports = {
     const quick_success = quick_object.success
     const quick_fail = quick_object.fail
     const quick_complete = quick_object.complete
-    console.log(quick_buttons.length, '...........')
     quick_object = null
     if (quick_buttons.length === 1) {
       const confirmText = quick_buttons[0].text
       const confirmColor = quick_buttons[0].color
       PROMISE((SUCCESS) => {
-        my.showModal({
+        my.confirm({
           title: quick_title,
           content: quick_message,
           confirmText,
@@ -68,7 +67,7 @@ module.exports = {
       const confirmText = quick_buttons[1].text
       const confirmColor = quick_buttons[1].color
       PROMISE((SUCCESS) => {
-        my.showModal({
+        my.confirm({
           title: quick_title,
           content: quick_message,
           cancelText,
@@ -98,18 +97,16 @@ module.exports = {
       return
     }
     const quick_itemList = quick_object.itemList
-    const quick_itemColor = quick_object.itemColor || '#000000'
     const quick_success = quick_object.success
     const quick_fail = quick_object.fail
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
       my.showActionSheet({
-        itemList: quick_itemList,
-        itemColor: quick_itemColor,
+        items: quick_itemList,
         success: my_res => {
           const quick_res = {
-            index: my_res.tapIndex
+            index: my_res.index
           }
           SUCCESS(quick_res)
         }

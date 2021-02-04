@@ -607,12 +607,7 @@ module.exports = {
   },
   setLocale: function setLocale() {},
   getThemeMode: function getThemeMode() {
-    var my_res = my.getSystemInfoSync();
-    if (my_res.theme === 'light') {
-      return 0;
-    } else {
-      return 1;
-    }
+    return 0;
   }
 };
 
@@ -638,12 +633,12 @@ module.exports = {
     var quick_duration = quick_object.duration || 0;
     var my_duration = void 0;
     if (quick_duration === 0) {
-      my_duration = 1500;
-    } else {
       my_duration = 3000;
+    } else {
+      my_duration = 6000;
     }
     var my_object = {
-      title: quick_message,
+      content: quick_message,
       duration: my_duration
     };
     my.showToast(my_object);
@@ -658,13 +653,12 @@ module.exports = {
     var quick_success = quick_object.success;
     var quick_fail = quick_object.fail;
     var quick_complete = quick_object.complete;
-    console.log(quick_buttons.length, '...........');
     quick_object = null;
     if (quick_buttons.length === 1) {
       var confirmText = quick_buttons[0].text;
       var confirmColor = quick_buttons[0].color;
       (0, _PROMISE2.default)(function (SUCCESS) {
-        my.showModal({
+        my.confirm({
           title: quick_title,
           content: quick_message,
           confirmText: confirmText,
@@ -691,7 +685,7 @@ module.exports = {
       var _confirmText = quick_buttons[1].text;
       var _confirmColor = quick_buttons[1].color;
       (0, _PROMISE2.default)(function (SUCCESS) {
-        my.showModal({
+        my.confirm({
           title: quick_title,
           content: quick_message,
           cancelText: cancelText,
@@ -720,18 +714,16 @@ module.exports = {
       return;
     }
     var quick_itemList = quick_object.itemList;
-    var quick_itemColor = quick_object.itemColor || '#000000';
     var quick_success = quick_object.success;
     var quick_fail = quick_object.fail;
     var quick_complete = quick_object.complete;
     quick_object = null;
     (0, _PROMISE2.default)(function (SUCCESS) {
       my.showActionSheet({
-        itemList: quick_itemList,
-        itemColor: quick_itemColor,
+        items: quick_itemList,
         success: function success(my_res) {
           var quick_res = {
-            index: my_res.tapIndex
+            index: my_res.index
           };
           SUCCESS(quick_res);
         }
@@ -840,8 +832,7 @@ module.exports = {
     var filePath = my.env.USER_DATA_PATH + '/' + filename;
     quick_object = null;
     var my_object = {
-      url: quick_url,
-      filePath: filePath
+      url: quick_url
     };
     (0, _PROMISE2.default)(function (SUCCESS) {
       my.downloadFile({
@@ -850,10 +841,7 @@ module.exports = {
         success: function success(my_res) {
           var token = '' + new Date().getTime();
           var quick_res = {
-            tempFilePath: my_res.tempFilePath,
-            filePath: my_res.filePath,
-            statusCode: my_res.statusCode,
-            profile: my_res.profile,
+            tempFilePath: my_res.apFilePath,
             token: token
           };
           SUCCESS(quick_res);
@@ -861,7 +849,7 @@ module.exports = {
       });
     }, quick_success, quick_fail, quick_complete);
     getApp().onekit_DownloadTask = my.downloadFile(my_object);
-    getApp().onekit_url = quick_url;
+    getApp().onekit_download_url = quick_url;
   },
 
   /** onDownloadComplete */
@@ -876,7 +864,7 @@ module.exports = {
       DownloadTask.onProgressUpdate(function (my_res) {
         if (my_res.progress === 100) {
           quick_success({
-            uri: getApp().onekit_url
+            uri: getApp().onekit_download_url
           });
         }
       });

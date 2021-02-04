@@ -59,8 +59,7 @@ module.exports = {
     const filePath = my.env.USER_DATA_PATH + '/' + filename
     quick_object = null
     const my_object = {
-      url: quick_url,
-      filePath,
+      url: quick_url
     }
     PROMISE((SUCCESS) => {
       my.downloadFile({
@@ -69,10 +68,7 @@ module.exports = {
         success: my_res => {
           const token = '' + new Date().getTime()
           const quick_res = {
-            tempFilePath: my_res.tempFilePath,
-            filePath: my_res.filePath,
-            statusCode: my_res.statusCode,
-            profile: my_res.profile,
+            tempFilePath: my_res.apFilePath,
             token
           }
           SUCCESS(quick_res)
@@ -80,7 +76,7 @@ module.exports = {
       })
     }, quick_success, quick_fail, quick_complete)
     getApp().onekit_DownloadTask = my.downloadFile(my_object)
-    getApp().onekit_url = quick_url
+    getApp().onekit_download_url = quick_url
   },
   /** onDownloadComplete */
 
@@ -94,7 +90,7 @@ module.exports = {
       DownloadTask.onProgressUpdate(my_res => {
         if (my_res.progress === 100) {
           quick_success({
-            uri: getApp().onekit_url
+            uri: getApp().onekit_download_url
           })
         }
       })

@@ -15,12 +15,7 @@ module.exports = {
 
   },
   getThemeMode() {
-    const my_res = my.getSystemInfoSync()
-    if (my_res.theme === 'light') {
-      return 0
-    } else {
-      return 1
-    }
+    return 0
   }
 
 }
