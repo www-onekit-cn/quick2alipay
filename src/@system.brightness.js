@@ -21,7 +21,7 @@ module.exports = {
       fail: quick_fail,
       complete: quick_complete,
     }
-    return wx.setScreenBrightness(my_object)
+    return my.setScreenBrightness(my_object)
   },
   /*
   brightness.getValue
@@ -36,7 +36,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getScreenBrightness({
+      my.getScreenBrightness({
         success: (my_res) => {
           const quick_res = {
             value: my_res.value * 255
@@ -51,7 +51,7 @@ module.exports = {
    */
 
   setKeepScreenOn(quick_object) {
-    return wx.setKeepScreenOn(quick_object)
+    return my.setKeepScreenOn(quick_object)
   },
   /**
      brightness.setMode

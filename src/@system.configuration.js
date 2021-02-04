@@ -4,7 +4,7 @@
 
 module.exports = {
   getLocale() {
-    const my_res = wx.getSystemInfoSync()
+    const my_res = my.getSystemInfoSync()
     const quick_res = {
       language: my_res.language,
       countryOrRegion: 'CN'
@@ -15,7 +15,7 @@ module.exports = {
 
   },
   getThemeMode() {
-    const my_res = wx.getSystemInfoSync()
+    const my_res = my.getSystemInfoSync()
     if (my_res.theme === 'light') {
       return 0
     } else {

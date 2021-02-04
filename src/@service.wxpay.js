@@ -19,7 +19,7 @@ module.exports = {
     const quick_cancel = quick_object.cancel
     // // /////////////////////////////////
     // PROMISE((SUCCESS) => {
-    //   wx.requestPayment({
+    //   my.requestPayment({
     //     timeStamp: quick_extra.time_stamp,
     //     nonceStr: quick_extra.nonce_str,
     //     package: quick_extra.package_value,
@@ -42,7 +42,7 @@ module.exports = {
     my_object.paySign = quick_extra.paySign
 
     my_object.success = function (res) {
-      console.log('wx-pay-success', res)
+      console.log('my-pay-success', res)
       if (quick_success) {
         quick_success({
           prepayid: my_object.prepayid
@@ -51,7 +51,7 @@ module.exports = {
     }
 
     my_object.fail = function (res) {
-      console.log('wx-pay-fail', res)
+      console.log('my-pay-fail', res)
 
       if (res.errMsg.indexOf('cancel') > -1 && quick_cancel) {
         // 用户取消支付
@@ -63,7 +63,7 @@ module.exports = {
     }
 
     console.log('支付参数', my_object)
-    wx.requestPayment(my_object)
+    my.requestPayment(my_object)
   }
 
 

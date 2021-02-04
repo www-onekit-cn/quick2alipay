@@ -37,7 +37,7 @@ module.exports = {
       my_callback.cancel = quick_object.cancel
     }
 
-    wx.navigateTo({
+    my.navigateTo({
       url: `/onekit/page/share.share/share.share?param=${JSON.stringify(my_object)}`,
       events: my_callback,
     })

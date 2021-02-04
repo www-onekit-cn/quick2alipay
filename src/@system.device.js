@@ -13,7 +13,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getSystemInfo({
+      my.getSystemInfo({
         success: my_res => {
           const quick_res = {
             brand: my_res.brand,

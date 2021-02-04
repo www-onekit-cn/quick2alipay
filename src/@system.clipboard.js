@@ -13,7 +13,7 @@ module.exports = {
     const quick_text = quick_object.text
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.setClipboardData({
+      my.setClipboardData({
         data: quick_text,
         success: () => {
           const quick_res = {
@@ -32,7 +32,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getClipboardData({
+      my.getClipboardData({
         success: my_res => {
           const quick_res = {
             text: my_res.data

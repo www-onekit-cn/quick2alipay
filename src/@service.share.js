@@ -4,7 +4,7 @@ module.exports = {
 
   // 获取服务提供商
   getProvider() {
-    return wx.getSystemInfoSync().brand
+    return my.getSystemInfoSync().brand
   },
 
   share(quick_object) {
@@ -65,7 +65,7 @@ module.exports = {
       my_callback.cancel = quick_cancel
     }
 
-    wx.navigateTo({
+    my.navigateTo({
       url: `/onekit/page/share.share/share.share?param=${JSON.stringify(my_object)}`,
       events: my_callback,
     })

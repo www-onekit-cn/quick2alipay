@@ -17,7 +17,7 @@ export default class Video {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.compressVideo({
+      my.compressVideo({
         src: quick_uri,
         quality: 'medium',
         bitrate: quick_bitrate,
@@ -44,7 +44,7 @@ export default class Video {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getVideoInfo({
+      my.getVideoInfo({
         src: quick_uri,
         success: my_res => {
           const quick_res = {

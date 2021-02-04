@@ -17,7 +17,7 @@ module.exports = {
     const quick_responseType = quick_object.responseType || 'json'
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.request({
+      my.request({
         url: quick_url,
         data: quick_data,
         header: quick_header,

@@ -15,7 +15,7 @@ module.exports = {
     const quick_coordType = quick_object.coordType || 'wgs84'
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getLocation({
+      my.getLocation({
         type: quick_coordType,
         highAccuracyExpireTime: quick_timeout,
         success: my_res => {
@@ -49,7 +49,7 @@ module.exports = {
     const quick_address = quick_object.address || ''
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.openLocation({
+      my.openLocation({
         latitude: quick_latitude,
         longitude: quick_longitude,
         scale: quick_scale,
@@ -78,7 +78,7 @@ module.exports = {
     const quick_coordType = quick_object.coordType || 'wgs84'
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.chooseLocation({
+      my.chooseLocation({
         latitude: quick_latitude,
         longitude: quick_longitude,
         success: (my_res) => {
@@ -112,10 +112,10 @@ module.exports = {
     if (!quick_object) {
       return
     }
-    wx.startLocationUpdate()
+    my.startLocationUpdate()
     const quick_callback = quick_object.callback
     quick_object = null
-    wx.onLocationChange(function (my_res) {
+    my.onLocationChange(function (my_res) {
       const quick_res = {
         latitude: my_res.latitude,
         longitude: my_res.longitude,
@@ -129,9 +129,9 @@ module.exports = {
       quick_callback(quick_res)
     })
   },
-  /** wx.offLocationChange */
+  /** my.offLocationChange */
   unsubscribe() {
-    wx.offLocationChange()
+    my.offLocationChange()
   },
   /** geolocation.getSupportedCoordTypes() */
   getSupportedCoordTypes() {

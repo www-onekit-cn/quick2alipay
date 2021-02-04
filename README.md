@@ -1,1 +1,1 @@
-# toutiao2alipay
+# quickapp2alipay

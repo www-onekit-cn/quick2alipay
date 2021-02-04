@@ -6,15 +6,15 @@ import PROMISE from '../node_modules/oneutil/PROMISE'
 module.exports = {
   /** wifi.connect */
   connect(quick_object) {
-    wx.startWifi()
-    return wx.connectWifi(quick_object)
+    my.startWifi()
+    return my.connectWifi(quick_object)
   },
   /**
    * wifi.scan
    */
   scan(quick_object) {
-    wx.startWifi()
-    return wx.getWifiList(quick_object)
+    my.startWifi()
+    return my.getWifiList(quick_object)
   },
   /**
    * wifi.getConnectedWifi */
@@ -23,13 +23,13 @@ module.exports = {
     if (!quick_object) {
       return
     }
-    wx.startWifi()
+    my.startWifi()
     const quick_success = quick_object.success
     const quick_fail = quick_object.fail
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getConnectedWifi({
+      my.getConnectedWifi({
         success: my_res => {
           const quick_res = {
             SSID: my_res.wifi.SSID,
@@ -45,13 +45,13 @@ module.exports = {
   /**
    * wifi.onscanned */
   set onscanned(callback) {
-    wx.startWifi()
-    return wx.onGetWifiList(callback)
+    my.startWifi()
+    return my.onGetWifiList(callback)
   },
   /** wifi.onstatechanged */
   set onstatechanged(callback) {
-    wx.startWifi()
-    wx.onWifiConnected(my_res => {
+    my.startWifi()
+    my.onWifiConnected(my_res => {
       let state
       if (my_res.wifi.secure) {
         state = 1

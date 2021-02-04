@@ -15,17 +15,17 @@ module.exports = {
     //   const quick_fail = quick_object.fail
     //   const quick_complete = quick_object.complete
     // ////////////////////////////////////////
-    wx.login({
+    my.login({
       success(res) {
         console.log('授权成功 ：', res)
-        wx.request({
-          url: 'http://192.168.22.116/quick/alipay/wxaccount/authorize',
+        my.request({
+          url: 'http://192.168.22.116/quick/alipay/myaccount/authorize',
           data: {
             JSCODE: res.code
           },
           success(res) {
             console.log('登录成功：', res)
-            wx.request({
+            my.request({
               url: 'http://192.168.22.116/quick/alipay/system/alarm',
               data: {
                 openid: res.openid,

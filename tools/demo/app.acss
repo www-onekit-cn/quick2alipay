@@ -1,4 +1,4 @@
-@import './toutiao2alipay/onekit.acss';
+@import './quickapp2alipay/onekit.acss';
 page {
   font-size: 16px;
   font-family: 'PingFangSC-Regular';

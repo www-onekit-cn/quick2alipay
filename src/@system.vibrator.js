@@ -19,9 +19,9 @@ module.exports = {
       complete: quick_complete,
     }
     if (quick_mode === 'short') {
-      return wx.vibrateShort(my_object)
+      return my.vibrateShort(my_object)
     } else {
-      return wx.vibrateLong(my_object)
+      return my.vibrateLong(my_object)
     }
   }
 }

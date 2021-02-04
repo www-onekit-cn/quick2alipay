@@ -13,7 +13,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getNetworkType({
+      my.getNetworkType({
         success: my_res => {
           let quick_res_type
           switch (my_res.networkType) {
@@ -42,7 +42,7 @@ module.exports = {
     }
     const quick_callback = quick_object.callback
     quick_object = null
-    wx.onNetworkStatusChange(function (my_res) {
+    my.onNetworkStatusChange(function (my_res) {
       let quick_res_type
       switch (my_res.networkType) {
         case 'unknown':
@@ -62,7 +62,7 @@ module.exports = {
   },
   // ///////
   unsubscribe() {
-    wx.offNetworkStatusChange()
+    my.offNetworkStatusChange()
   },
   /** getSimOperator */
   getSimOperator() {

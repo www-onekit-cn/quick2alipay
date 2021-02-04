@@ -51,7 +51,7 @@ Component({
     }
     const values = Array(this.properties.numstars)
     // ////////////////////////////////
-    const query = wx.createSelectorQuery().in(this)
+    const query = my.createSelectorQuery().in(this)
     query.select('.onekit-rating').boundingClientRect(function (res) {
       const width = res.width / that.properties.numstars
       const height = res.height

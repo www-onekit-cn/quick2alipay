@@ -13,8 +13,8 @@ module.exports = {
     const quick_fail = quick_object.fail
     const quick_complete = quick_object.complete
     quick_object = null
-    const path = wx.env.USER_DATA_PATH
-    const FileSystemManager = wx.getFileSystemManager()
+    const path = my.env.USER_DATA_PATH
+    const FileSystemManager = my.getFileSystemManager()
     PROMISE((SUCCESS) => {
       FileSystemManager.unzip({
         zipFilePath: quick_srcUri.indexOf('internal://') === 0 ? path + quick_srcUri.substring(10) : quick_srcUri,

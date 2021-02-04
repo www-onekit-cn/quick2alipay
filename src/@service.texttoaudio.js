@@ -8,7 +8,7 @@ const plugin = requirePlugin('myPlugin')
 module.exports = {
 
   speak(quick_object) {
-    const InnerAudioContext = wx.createInnerAudioContext()
+    const InnerAudioContext = my.createInnerAudioContext()
     this.innerAudioContext = InnerAudioContext
     getApp().onekit_speak = 'play'
     if (!quick_object) {

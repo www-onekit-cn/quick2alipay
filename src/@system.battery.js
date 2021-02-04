@@ -14,7 +14,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getBatteryInfo({
+      my.getBatteryInfo({
         success: (my_res) => {
           const quick_res = {
             charging: my_res.isCharging,

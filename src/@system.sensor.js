@@ -10,8 +10,8 @@ module.exports = {
     const my_object = {
       interval: quick_interval,
     }
-    wx.startAccelerometer(my_object)
-    wx.onAccelerometerChange(my_res => {
+    my.startAccelerometer(my_object)
+    my.onAccelerometerChange(my_res => {
       const quick_res = {
         x: my_res.x,
         y: my_res.y,
@@ -23,16 +23,16 @@ module.exports = {
 
   /** unsubscribeAccelerometer */
   unsubscribeAccelerometer() {
-    return wx.offAccelerometerChange()
+    return my.offAccelerometerChange()
   },
   /** sensor.subscribeCompass */
   subscribeCompass(quick_object) {
     if (!quick_object) {
       return
     }
-    wx.startCompass()
+    my.startCompass()
     const quick_callback = quick_object.callback
-    wx.onCompassChange(function (res) {
+    my.onCompassChange(function (res) {
       quick_callback({
         direction: res.direction,
         accuracy: res.accuracy
@@ -42,7 +42,7 @@ module.exports = {
 
   /** sensor.unsubscribeCompass() */
   unsubscribeCompass() {
-    return wx.offCompassChange()
+    return my.offCompassChange()
   },
 
   /** sensor.subscribeProximity */
@@ -69,7 +69,7 @@ module.exports = {
     if (!quick_object) {
       return
     }
-    wx.startAccelerometer({
+    my.startAccelerometer({
       interval: 'game'
     })
     const quick_callback = quick_object.callback
@@ -88,7 +88,7 @@ module.exports = {
     let x
     let y
     let z
-    wx.onAccelerometerChange(function (res) {
+    my.onAccelerometerChange(function (res) {
       if (x && check(x, res.x)) {
         add()
         x = 0
@@ -109,6 +109,6 @@ module.exports = {
   // ////////////////////////////
   /** sensor.unsubscribeStepCounter() */
   unsubscribeStepCounter() {
-    return wx.offCompassChange()
+    return my.offCompassChange()
   }
 }

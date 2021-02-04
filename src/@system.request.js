@@ -22,7 +22,7 @@ module.exports = {
       TASK(quick_files, (quick_file, callback) => {
         const filePath = quick_file.uri
         const name = quick_file.name
-        wx.uploadFile({
+        my.uploadFile({
           url: quick_url,
           name,
           filePath,
@@ -56,14 +56,14 @@ module.exports = {
     const quick_complete = quick_object.complete
     const quick_url = quick_object.url
     const filename = quick_object.filename || quick_url.substring(quick_url.lastIndexOf('/') + 1)
-    const filePath = wx.env.USER_DATA_PATH + '/' + filename
+    const filePath = my.env.USER_DATA_PATH + '/' + filename
     quick_object = null
     const my_object = {
       url: quick_url,
       filePath,
     }
     PROMISE((SUCCESS) => {
-      wx.downloadFile({
+      my.downloadFile({
         url: quick_url,
         filePath,
         success: my_res => {
@@ -79,7 +79,7 @@ module.exports = {
         }
       })
     }, quick_success, quick_fail, quick_complete)
-    getApp().onekit_DownloadTask = wx.downloadFile(my_object)
+    getApp().onekit_DownloadTask = my.downloadFile(my_object)
     getApp().onekit_url = quick_url
   },
   /** onDownloadComplete */

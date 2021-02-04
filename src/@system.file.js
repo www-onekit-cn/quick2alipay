@@ -14,9 +14,9 @@ module.exports = {
     const quick_fail = quick_object.fail
     const quick_complete = quick_object.complete
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
-    const srcPath = wx.env.USER_DATA_PATH + quick_srcUri.substring(10)
-    const destPath = wx.env.USER_DATA_PATH + quick_dstUri.substring(10)
+    const fileSystemManager = my.getFileSystemManager()
+    const srcPath = my.env.USER_DATA_PATH + quick_srcUri.substring(10)
+    const destPath = my.env.USER_DATA_PATH + quick_dstUri.substring(10)
     PROMISE((SUCCESS) => {
       fileSystemManager.copyFile({
         srcPath,
@@ -51,9 +51,9 @@ module.exports = {
     const quick_fail = quick_object.fail
     const quick_complete = quick_object.complete
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
-    const srcPath = wx.env.USER_DATA_PATH + quick_srcUri.substring(10)
-    const destPath = wx.env.USER_DATA_PATH + quick_dstUri.substring(10)
+    const fileSystemManager = my.getFileSystemManager()
+    const srcPath = my.env.USER_DATA_PATH + quick_srcUri.substring(10)
+    const destPath = my.env.USER_DATA_PATH + quick_dstUri.substring(10)
     PROMISE((SUCCESS) => {
       fileSystemManager.copyFile({
         srcPath,
@@ -78,8 +78,8 @@ module.exports = {
     const quick_complete = quick_object.complete
     const quick_uri = quick_object.uri
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
-    const dirPath = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+    const fileSystemManager = my.getFileSystemManager()
+    const dirPath = my.env.USER_DATA_PATH + quick_uri.substring(10)
     PROMISE((SUCCESS) => {
       fileSystemManager.readdir({
         dirPath,
@@ -103,8 +103,8 @@ module.exports = {
     const quick_complete = quick_object.complete
     const quick_uri = quick_object.uri
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
-    const filePath = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+    const fileSystemManager = my.getFileSystemManager()
+    const filePath = my.env.USER_DATA_PATH + quick_uri.substring(10)
     PROMISE((SUCCESS) => {
       fileSystemManager.getFileInfo({
         filePath,
@@ -130,14 +130,14 @@ module.exports = {
     const quick_complete = quick_object.complete
     const quick_uri = quick_object.uri
     quick_object = null
-    const filePath = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+    const filePath = my.env.USER_DATA_PATH + quick_uri.substring(10)
     const swan_object = {
       filePath,
       success: quick_success,
       fail: quick_fail,
       complete: quick_complete,
     }
-    return wx.getFileSystemManager().unlink(swan_object)
+    return my.getFileSystemManager().unlink(swan_object)
   },
   /** file.writeText */
 
@@ -152,8 +152,8 @@ module.exports = {
     const quick_text = quick_object.text
     const quick_encoding = quick_object.encoding || 'utf8'
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
-    const filePath = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+    const fileSystemManager = my.getFileSystemManager()
+    const filePath = my.env.USER_DATA_PATH + quick_uri.substring(10)
     PROMISE((SUCCESS) => {
       fileSystemManager.writeFile({
         filePath,
@@ -183,8 +183,8 @@ module.exports = {
     const quick_uri = quick_object.uri
     const quick_buffer = quick_object.buffer
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
-    const filePath = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+    const fileSystemManager = my.getFileSystemManager()
+    const filePath = my.env.USER_DATA_PATH + quick_uri.substring(10)
     PROMISE((SUCCESS) => {
       fileSystemManager.writeFile({
         filePath,
@@ -210,8 +210,8 @@ module.exports = {
     const quick_uri = quick_object.uri
     const quick_encoding = quick_object.encoding || 'utf8'
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
-    const filePath = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+    const fileSystemManager = my.getFileSystemManager()
+    const filePath = my.env.USER_DATA_PATH + quick_uri.substring(10)
     PROMISE((SUCCESS) => {
       fileSystemManager.readFile({
         filePath,
@@ -236,8 +236,8 @@ module.exports = {
     const quick_complete = quick_object.complete
     const quick_uri = quick_object.uri
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
-    const filePath = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+    const fileSystemManager = my.getFileSystemManager()
+    const filePath = my.env.USER_DATA_PATH + quick_uri.substring(10)
     PROMISE((SUCCESS) => {
       fileSystemManager.readFile({
         filePath,
@@ -261,9 +261,9 @@ module.exports = {
     const quick_complete = quick_object.complete
     const quick_uri = quick_object.uri
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
+    const fileSystemManager = my.getFileSystemManager()
     PROMISE((SUCCESS, FAIL) => {
-      const path = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+      const path = my.env.USER_DATA_PATH + quick_uri.substring(10)
       fileSystemManager.access({
         path,
         success: () => {
@@ -291,9 +291,9 @@ module.exports = {
     const quick_uri = quick_object.uri
     const quick_recursive = quick_object.recursive || false
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
+    const fileSystemManager = my.getFileSystemManager()
     PROMISE((SUCCESS) => {
-      const dirPath = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+      const dirPath = my.env.USER_DATA_PATH + quick_uri.substring(10)
       fileSystemManager.mkdir({
         dirPath,
         recursive: quick_recursive,
@@ -318,9 +318,9 @@ module.exports = {
     const quick_uri = quick_object.uri
     const quick_recursive = quick_object.recursive || false
     quick_object = null
-    const fileSystemManager = wx.getFileSystemManager()
+    const fileSystemManager = my.getFileSystemManager()
     PROMISE((SUCCESS) => {
-      const dirPath = wx.env.USER_DATA_PATH + quick_uri.substring(10)
+      const dirPath = my.env.USER_DATA_PATH + quick_uri.substring(10)
       fileSystemManager.rmdir({
         dirPath,
         recursive: quick_recursive,

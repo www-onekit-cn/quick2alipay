@@ -11,7 +11,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     // const quick_cancel = quick_object.cancel
-    const CameraContext = wx.createCameraContext()
+    const CameraContext = my.createCameraContext()
     PROMISE((SUCCESS) => {
       CameraContext.takePhoto({
         success: my_res => {
@@ -31,7 +31,7 @@ module.exports = {
     quick_object = null
     // const quick_cancel = quick_object.cancel
     PROMISE((SUCCESS) => {
-      wx.chooseVideo({
+      my.chooseVideo({
         success: my_res => {
           const quick_res = {
             uri: my_res.tempFilePath,
@@ -54,7 +54,7 @@ module.exports = {
     quick_object = null
     // const quick_cancel = quick_object.cancel
     PROMISE((SUCCESS) => {
-      wx.chooseImage({
+      my.chooseImage({
         count: 1,
         success: my_res => {
           const quick_res = {
@@ -76,7 +76,7 @@ module.exports = {
     quick_object = null
     // const quick_cancel = quick_object.cancel
     PROMISE((SUCCESS) => {
-      wx.chooseImage({
+      my.chooseImage({
         success: my_res => {
           const quick_files = my_res.tempFiles.map(file => ({
             uri: file.path,
@@ -101,7 +101,7 @@ module.exports = {
     quick_object = null
     // const quick_cancel = quick_object.cancel
     PROMISE((SUCCESS) => {
-      wx.chooseVideo({
+      my.chooseVideo({
         success: my_res => {
           const quick_res = {
             uri: my_res.tempFilePath,
@@ -124,7 +124,7 @@ module.exports = {
     quick_object = null
     // const quick_cancel = quick_object.cancel
     PROMISE((SUCCESS) => {
-      wx.chooseMedia({
+      my.chooseMedia({
         mediaType: ['video'],
         success: my_res => {
           const quick_files = my_res.tempFiles.map(file => ({
@@ -162,7 +162,7 @@ module.exports = {
     quick_object = null
     // const quick_cancel = quick_object.cancel
     PROMISE((SUCCESS) => {
-      wx.chooseMessageFile({
+      my.chooseMessageFile({
         count: 1,
         success: my_res => {
           const quick_res = {
@@ -193,7 +193,7 @@ module.exports = {
       fail: quick_fail,
       complete: quick_complete,
     }
-    wx.saveImageToPhotosAlbum(my_object)
+    my.saveImageToPhotosAlbum(my_object)
   },
 
   /** media.previewImage */
@@ -212,7 +212,7 @@ module.exports = {
       fail: quick_fail,
       complete: quick_complete,
     }
-    wx.previewImage(my_object)
+    my.previewImage(my_object)
   },
   /** media.getRingtone */
   getRingtone() {

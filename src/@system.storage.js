@@ -16,7 +16,7 @@ module.exports = {
     PROMISE((SUCCESS) => {
       if (quick_value != null) {
         if (quick_value.length === 0) {
-          wx.clearStorage({
+          my.clearStorage({
             success: () => {
               const quick_res = {
                 errMsg: 'clearStorage: ok'
@@ -25,7 +25,7 @@ module.exports = {
             }
           })
         } else {
-          wx.setStorage({
+          my.setStorage({
             key: quick_key,
             data: quick_value,
             success: () => {
@@ -37,7 +37,7 @@ module.exports = {
           })
         }
       } else {
-        wx.clearStorage({
+        my.clearStorage({
           success: () => {
             const quick_res = {
               errMsg: 'clearStorage: ok'
@@ -61,7 +61,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getStorage({
+      my.getStorage({
         key: quick_key,
         success: (my_res) => {
           const quick_res = my_res.data
@@ -84,7 +84,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.clearStorage({
+      my.clearStorage({
         success: () => {
           const quick_res = {}
           SUCCESS(quick_res)
@@ -104,7 +104,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.removeStorage({
+      my.removeStorage({
         key: quick_key,
         success: () => {
           const quick_res = {}
@@ -125,7 +125,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getStorageInfo({
+      my.getStorageInfo({
         success: (my_res) => {
           const quick_res =
             my_res.keys[quick_index]
@@ -136,7 +136,7 @@ module.exports = {
   },
 
   get length() {
-    const swan_res = wx.getStorageInfoSync()
+    const swan_res = my.getStorageInfoSync()
     return swan_res.keys.length
   }
 }

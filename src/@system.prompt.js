@@ -22,7 +22,7 @@ module.exports = {
       title: quick_message,
       duration: my_duration
     }
-    wx.showToast(my_object)
+    my.showToast(my_object)
   },
 
   showDialog(quick_object) {
@@ -41,7 +41,7 @@ module.exports = {
       const confirmText = quick_buttons[0].text
       const confirmColor = quick_buttons[0].color
       PROMISE((SUCCESS) => {
-        wx.showModal({
+        my.showModal({
           title: quick_title,
           content: quick_message,
           confirmText,
@@ -68,7 +68,7 @@ module.exports = {
       const confirmText = quick_buttons[1].text
       const confirmColor = quick_buttons[1].color
       PROMISE((SUCCESS) => {
-        wx.showModal({
+        my.showModal({
           title: quick_title,
           content: quick_message,
           cancelText,
@@ -104,7 +104,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.showActionSheet({
+      my.showActionSheet({
         itemList: quick_itemList,
         itemColor: quick_itemColor,
         success: my_res => {

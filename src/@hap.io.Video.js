@@ -12,7 +12,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getVideoInfo({
+      my.getVideoInfo({
         src: quick_uri,
         success: my_res => {
           const quick_res = {

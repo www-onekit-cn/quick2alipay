@@ -6,7 +6,7 @@ module.exports = {
   loadUrl(quick_object) {
     const quick_url = quick_object.url
     quick_object = null
-    wx.navigateTo({
+    my.navigateTo({
       url: `/quickapp2alipay/page/router.push/ie?url=${encodeURI(quick_url)}`
     })
   }

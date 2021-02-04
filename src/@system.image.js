@@ -12,7 +12,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.getImageInfo({
+      my.getImageInfo({
         src: quick_uri,
         success: my_res => {
           const quick_res = {
@@ -36,7 +36,7 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
-      wx.compressImage({
+      my.compressImage({
         src: quick_uri,
         quality: quick_quality,
         success: my_res => {

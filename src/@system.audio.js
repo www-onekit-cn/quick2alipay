@@ -65,7 +65,7 @@ module.exports = {
 
   set src(src) {
     getApp().onekit_src = src
-    const InnerAudioContext = wx.createInnerAudioContext()
+    const InnerAudioContext = my.createInnerAudioContext()
     this.inneraudioContext = InnerAudioContext
     this.inneraudioContext.src = InnerAudioContext
   },
@@ -75,20 +75,20 @@ module.exports = {
     this.inneraudioContext.currentTime = currentTime
   },
   get currentTime() {
-    if (wx.createInnerAudioContext().currentTime) {
-      return wx.createInnerAudioContext().currentTime
+    if (my.createInnerAudioContext().currentTime) {
+      return my.createInnerAudioContext().currentTime
     }
   },
 
   get duration() {
-    if (wx.createInnerAudioContext().duration) {
-      return wx.createInnerAudioContext().duration
+    if (my.createInnerAudioContext().duration) {
+      return my.createInnerAudioContext().duration
     }
   },
 
   set autoplay(autoplay) {
     getApp().onekit_autoplay = autoplay
-    wx.createInnerAudioContext().autoplay = autoplay
+    my.createInnerAudioContext().autoplay = autoplay
   },
   get autoplay() {
     if (getApp().onekit_autoplay) {
@@ -100,7 +100,7 @@ module.exports = {
 
   set loop(loop) {
     getApp().onekit_loop = loop
-    wx.createInnerAudioContext().loop = loop
+    my.createInnerAudioContext().loop = loop
   },
   get loop() {
     if (getApp().onekit_loop) {
@@ -112,7 +112,7 @@ module.exports = {
 
   set volume(volume) {
     getApp().onekit_volume = volume
-    wx.createInnerAudioContext().volume = volume
+    my.createInnerAudioContext().volume = volume
   },
   get volume() {
     if (getApp().onekit_volume) {
@@ -124,12 +124,12 @@ module.exports = {
 
   set muted(muted) {
     getApp().onekit_muted = muted
-    wx.createInnerAudioContext().obeyMuteSwitch = muted
+    my.createInnerAudioContext().obeyMuteSwitch = muted
   },
 
   get notificationVisible() {
-    if (wx.createInnerAudioContext().paused) {
-      return wx.createInnerAudioContext().paused
+    if (my.createInnerAudioContext().paused) {
+      return my.createInnerAudioContext().paused
     } else {
       return true
     }

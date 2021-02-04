@@ -21,7 +21,7 @@ module.exports = {
     //     my_object.protocols.push(protocol)
     //   }
     // }
-    const socket = wx.connectSocket(quick_object)
+    const socket = my.connectSocket(quick_object)
     return new WebSocket(socket)
   }
 

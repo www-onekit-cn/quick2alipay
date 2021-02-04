@@ -24,12 +24,12 @@ module.exports = {
       fail: quick_fail,
       complete: quick_complete,
     }
-    const recorderManager = wx.getRecorderManager()
+    const recorderManager = my.getRecorderManager()
     recorderManager.start(my_object)
   },
   /** record.stop */
   stop() {
-    const recorderManager = wx.getRecorderManager()
+    const recorderManager = my.getRecorderManager()
     recorderManager.start()
   }
 }

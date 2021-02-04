@@ -13,11 +13,11 @@ module.exports = {
     const quick_fail = quick_object.fail
     // const quick_cancel = quick_object.cancel
     // ////////////////////////////////////////
-    wx.login({
+    my.login({
       success(res) {
         console.log('授权成功 ：', res)
-        wx.request({
-          url: 'http://192.168.22.116/quick/alipay/wxaccount/authorize',
+        my.request({
+          url: 'http://192.168.22.116/quick/alipay/myaccount/authorize',
           data: {
             JSCODE: res.code
           },

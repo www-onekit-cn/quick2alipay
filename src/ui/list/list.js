@@ -5,7 +5,7 @@ let deviceWidth = 0
 let deviceDPR = 0
 const BASE_DEVICE_WIDTH = 750
 const checkDeviceWidth = function checkDeviceWidth() {
-  const info = wx.getSystemInfoSync()
+  const info = my.getSystemInfoSync()
   // console.log('info', info)
   isIPhone = info.platform === 'ios'
   const newDeviceWidth = info.screenWidth || 375
@@ -54,7 +54,7 @@ const transformRpx = function transformRpx(style, inline) {
 
 const DEFAULT_SHOW_SCREENS = 4
 const RECT_SIZE = 200
-const systemInfo = wx.getSystemInfoSync()
+const systemInfo = my.getSystemInfoSync()
 const DEBUG = false
 
 Component({
@@ -75,7 +75,7 @@ Component({
           }
           setTimeout(function () {
             try {
-              target.createSelectorQuery().select('.wx-recycle-item').boundingClientRect(function (rect) {
+              target.createSelectorQuery().select('.my-recycle-item').boundingClientRect(function (rect) {
                 if (rect && (rect.width !== size.width || rect.height !== size.height)) {
                   // eslint-disable-next-line no-console
                   console.warn('[list] the size in <recycle-item> is not the same with param itemSize, expect {width: ' + rect.width + ', height: ' + rect.height + '} but got {width: ' + size.width + ', height: ' + size.height + '}')
