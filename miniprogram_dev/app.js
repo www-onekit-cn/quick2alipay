@@ -1,6 +1,8 @@
-
-
-App({
+import {
+  OnekitApp,
+  tt
+} from './quickapp2alipay/index'
+OnekitApp({
   onLaunch: function () {
     console.log('App Launch')
   },

@@ -483,12 +483,12 @@ var _Video = __webpack_require__(64);
 
 var _Video2 = _interopRequireDefault(_Video);
 
-var _service = __webpack_require__(65);
-
-var _service2 = _interopRequireDefault(_service);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
 exports.default = {
   OnekitApp: _OnekitApp2.default,
   OnekitBehavior: _OnekitBehavior2.default,
@@ -519,12 +519,9 @@ exports.default = {
   '@system.media': _system46.default,
   '@system.image': _system48.default,
   '@system.audio': _system50.default,
-  '@hap.io.Video': _Video2.default,
-  '@service.texttoaudio': _service2.default
-}; /* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
-/* eslint-disable no-console */
+  '@hap.io.Video': _Video2.default
+
+};
 
 /***/ }),
 /* 34 */
@@ -3209,143 +3206,6 @@ var Video = function () {
 }();
 
 exports.default = Video;
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _PROMISE = __webpack_require__(0);
-
-var _PROMISE2 = _interopRequireDefault(_PROMISE);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var plugin = requirePlugin('myPlugin'); /* eslint-disable no-undef */
-/* eslint-disable no-console */
-/* eslint-disable camelcase */
-
-
-module.exports = {
-  speak: function speak(quick_object) {
-    var InnerAudioContext = my.createInnerAudioContext();
-    this.innerAudioContext = InnerAudioContext;
-    getApp().onekit_speak = 'play';
-    if (!quick_object) {
-      return;
-    }
-    var quick_lang = quick_object.lang;
-    var quick_content = quick_object.content;
-    var quick_rate = quick_object.rate || 1;
-    var quick_pitch = quick_object.pitch || 1;
-    var quick_success = quick_object.success;
-    var quick_fail = quick_object.fail;
-    var quick_complete = quick_object.complete;
-    quick_object = null;
-    (0, _PROMISE2.default)(function (SUCCESS) {
-      plugin.textToSpeech({
-        lang: quick_lang,
-        content: quick_content,
-        success: function success(my_res) {
-          InnerAudioContext.src = my_res.filename;
-          InnerAudioContext.volume = quick_pitch;
-          InnerAudioContext.playbackRate = quick_rate;
-          InnerAudioContext.play();
-          var quick_res = {
-            utteranceId: my_res.retcode.toString(),
-            origin: my_res.origin,
-            filename: my_res.filename,
-            expired_time: my_res.expired_time
-          };
-          SUCCESS(quick_res);
-        },
-        fail: function fail(res) {
-          console.log(res);
-        }
-      });
-    }, quick_success, quick_fail, quick_complete);
-  },
-  textToAudioFile: function textToAudioFile(quick_object) {
-    getApp().onekit_textToAudioFile = 'done';
-    if (!quick_object) {
-      return;
-    }
-    var quick_lang = quick_object.lang;
-    var quick_content = quick_object.content;
-    var quick_success = quick_object.success;
-    var quick_fail = quick_object.fail;
-    var quick_complete = quick_object.complete;
-    quick_object = null;
-    (0, _PROMISE2.default)(function (SUCCESS) {
-      plugin.textToSpeech({
-        lang: quick_lang,
-        content: quick_content,
-        success: function success(my_res) {
-          var quick_res = {
-            utteranceId: my_res.retcode.toString(),
-            origin: my_res.origin,
-            filePath: my_res.filename,
-            expired_time: my_res.expired_time
-          };
-          SUCCESS(quick_res);
-        },
-        fail: function fail(res) {
-          console.log(res);
-        }
-      });
-    }, quick_success, quick_fail, quick_complete);
-  },
-  isLanguageAvailable: function isLanguageAvailable(quick_object) {
-    var quick_lang = quick_object.lang;
-    var quick_success = quick_object.success;
-    var quick_res = void 0;
-    if (quick_lang === 'zh_CN' || quick_lang === 'en_US') {
-      quick_res = {
-        isAvailable: true
-      };
-    } else {
-      quick_res = {
-        isAvailable: false
-      };
-    }
-    quick_success(quick_res);
-  },
-
-  set onttsstatechange(callback) {
-    var state = void 0;
-    switch (getApp().onekit_speak) {
-      case 'play':
-        state = 'onStart';
-        break;
-      case 'done':
-        state = 'onDone';
-        break;
-      case 'stop':
-        state = 'onStop';
-        break;
-      default:
-        state = 'onError';
-    }
-    var quick_res = {
-      state: state
-    };
-    callback(quick_res);
-  },
-  stop: function stop() {
-    getApp().onekit_speak = 'stop';
-    if (!this.innerAudioContext) return;
-    this.innerAudioContext.stop();
-  },
-  isSpeaking: function isSpeaking() {
-    if (getApp().onekit_speak === 'stop') {
-      return false;
-    } else {
-      return true;
-    }
-  }
-};
 
 /***/ })
 /******/ ]);

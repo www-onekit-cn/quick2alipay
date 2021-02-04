@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "auto-sizer": "/onekit/ui/auto-size-img/index",
-    "am-icon": "/onekit/ui/am-icon/index"
-  }
-}
