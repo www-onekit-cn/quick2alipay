@@ -84,8 +84,12 @@ module.exports = {
       fileSystemManager.readdir({
         dirPath,
         success: (swan_res) => {
+          const fileList = swan_res.files.map(file => [{
+            uri: file,
+            lastModifiedTime: new Date().getTime()
+          }])
           const quick_res = {
-            fileList: swan_res.files
+            fileList
           }
           SUCCESS(quick_res)
         }

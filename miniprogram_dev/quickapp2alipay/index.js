@@ -1002,13 +1002,11 @@ var WebSocket = function () {
     var quick_fail = quick_object.fail;
     var quick_complete = quick_object.complete;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      console.log('1111111111111');
       my.connectSocket({
         url: quick_url,
         header: quick_header
       });
       my.onSocketOpen(function () {
-        console.log('已连接');
         my.sendSocketMessage({
           data: quick_data,
           success: function success() {
@@ -1016,9 +1014,6 @@ var WebSocket = function () {
               success: true
             };
             SUCCESS(quick_res);
-          },
-          fail: function fail(res) {
-            console.log(res);
           }
         });
       });
@@ -1297,8 +1292,14 @@ module.exports = {
       fileSystemManager.readdir({
         dirPath: dirPath,
         success: function success(swan_res) {
+          var fileList = swan_res.files.map(function (file) {
+            return [{
+              uri: file,
+              lastModifiedTime: new Date().getTime()
+            }];
+          });
           var quick_res = {
-            fileList: swan_res.files
+            fileList: fileList
           };
           SUCCESS(quick_res);
         }
@@ -1617,13 +1618,16 @@ module.exports = {
     var quick_complete = quick_object.complete;
     quick_object = null;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.scanCode({
+      my.scan({
         success: function success(my_res) {
           var quick_res = {
-            result: my_res.result,
-            scanType: my_res.scanType,
-            charSet: my_res.charSet,
-            path: my_res.path,
+            result: my_res.codeContent,
+            code: my_res.code,
+            qrCode: my_res.qrCode,
+            barCode: my_res.barCode,
+            codeType: my_res.codeType,
+            codeContent: my_res.codeContent,
+            imageChannel: my_res.imageChannel,
             rawData: my_res.rawData
           };
           SUCCESS(quick_res);

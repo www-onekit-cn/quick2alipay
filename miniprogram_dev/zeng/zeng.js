@@ -6,10 +6,229 @@ const prompt = quickapp2alipay["@system.prompt"]
 const request = quickapp2alipay["@system.request"]
 
 const websocketfactory = quickapp2alipay["@system.websocketfactory"]
-//const fetch = quickapp2alipay["@system.fetch"]
-
+const storage  = quickapp2alipay["@system.storage"]
+const file   = quickapp2alipay["@system.file"]
+const Fetch = quickapp2alipay["@system.fetch"]
+const vibrator    = quickapp2alipay["@system.vibrator"]
+const barcode     = quickapp2alipay["@system.barcode"]
 Page({
   onLoad(e) {
+//     Fetch.fetch({
+//   url: 'http://www.example.com',
+//   responseType: 'text',
+//   success: function(response) {
+//    console.log(response)  },
+//   fail: function(data, code) {
+//     console.log(`handling fail, errMsg = ${data}`)
+//     console.log(`handling fail, errCode = ${code}`)
+//   }
+// })
+    barcode.scan({
+  success: function(data) {
+    console.log(data)
+  },
+  fail: function(code) {
+    console.log(code)
+  }
+})
+//     vibrator.vibrate({
+//   mode: 'long'
+// })
+    // const fileSystemManager = my.getFileSystemManager()
+
+    //   const dirPath = my.env.USER_DATA_PATH
+    //   fileSystemManager.mkdir({
+    //     dirPath,
+    //     recursive: ,
+    //     success: () => {
+         
+    //     }
+    //   })
+//     file.writeText({
+//   uri: 'internal://files/dor/d.txt',
+//   text: 'test',
+//   success: function() {
+//     console.log('handling success')
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// file.readText({
+//   uri: 'internal://files/dir/a.txt',
+//   success: function(data) {
+//     console.log('text: ' + data.text)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+//   file.mkdir({
+//   uri: 'internal://files/dor/',
+//   recursive: true,
+//   success: function(data) {
+//     console.log(data)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+
+// file.copy({
+//   srcUri: 'internal://files/dor/d.txt',
+//   dstUri: 'internal://files/dir/',
+//   success: function(uri) {
+//     console.log(uri)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// file.move({
+//   srcUri: 'internal://files/dor/c.txt',
+//   dstUri: 'internal://files/dir/',
+//   success: function(uri) {
+//     console.log(uri)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// file.list({
+//   uri: 'internal://files/dir/',
+//   success: function(data) {
+//     console.log(data)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// file.list({
+//   uri: 'internal://files/dor/',
+//   success: function(data) {
+//     console.log(data)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// file.delete({
+//   uri: 'internal://files/dir/d.txt',
+//   success: function(data) {
+//     console.log('handling success')
+//   },
+//   fail: function(data) {
+//     console.log(data)
+//   }
+// })
+// file.get({
+//   uri: 'internal://files/dir/b.txt',
+//   success: function(data) {
+//    console.log(data)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+//const buffer = new ArrayBuffer(8)
+// file.writeArrayBuffer({
+//   uri: 'internal://files/dir/b.txt',
+//   buffer: buffer,
+//   success: function(data) {
+//     console.log(data)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// file.readArrayBuffer({
+//   uri: 'internal://files/dir/b.txt',
+//   position: 100,
+//   length: 100,
+//   success: function(data) {
+//     console.log('buffer.length: ' + data.buffer.length)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+  
+// file.rmdir({
+//   uri: 'internal://files/dir',
+//   success: function(data) {
+//     console.log(`handling success`)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// file.access({
+//   uri: 'internal://files/dir',
+//   success: function(data) {
+//     console.log(data)
+//   },
+//   fail: function(data) {
+//     console.log(data)
+//   }
+// })
+//     storage.set({
+//   key: 'A2',
+//   value: 'V2',
+//   success: function(data) {
+//     console.log(data)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// storage.key({
+//   index: 0,
+//   success: function(data) {
+//     console.log(`handling success, key = ${data}`)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// let length = storage.length
+// console.log(length)
+// storage.delete({
+//   key: 'A1',
+//   success: function(data) {
+//     console.log('handling success')
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// storage.clear({
+//   success: function(data) {
+//     console.log(data)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// storage.get({
+//   key: 'A1',
+//   success: function(data) {
+//     console.log(data)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+    // fetch.fetch({
+    //   url: 'https://www.onekit.cn',
+    //   responseType: 'text',
+    //   success: function (response) {
+    //     console.log(response)
+    //   },
+    //   fail: function (data, code) {
+    //     console.log(`handling fail, errMsg = ${data}`)
+    //     console.log(`handling fail, errCode = ${code}`)
+    //   }
+    // })
     //   console.log(my.canIUse('connectSocket'));
   //   my.connectSocket({
   //     url: 'wss://echo.websocket.org',
@@ -33,39 +252,29 @@ Page({
   // },10000) 
 
 
-        const ws = websocketfactory.create({
-      url: 'wss://echo.websocket.org',
-      header: {
-        'content-type': 'application/json'
-      },
-      protocols: ['protocol']
-    })
-    my.closeSocket({
-      success:res=>{
-        console.log(res)
-      }
-    })
-   
-    ws.send({
-      data: 'send message',
-      success: function() {
-        console.log(`send success`)
-      },
-      fail: function(data, code) {
-        console.log(`handling fail, code = ${code}`)
-      }
-    })
-    // fetch.fetch({
-    //   url: 'https://www.onekit.cn',
-    //   responseType: 'text',
-    //   success: function (response) {
-    //     console.log(response)
+    //     const ws = websocketfactory.create({
+    //   url: 'wss://echo.websocket.org',
+    //   header: {
+    //     'content-type': 'application/json'
     //   },
-    //   fail: function (data, code) {
-    //     console.log(`handling fail, errMsg = ${data}`)
-    //     console.log(`handling fail, errCode = ${code}`)
+    //   protocols: ['protocol']
+    // })
+    // my.closeSocket({
+    //   success:res=>{
+    //     console.log(res)
     //   }
     // })
+   
+    // ws.send({
+    //   data: 'send message',
+    //   success: function() {
+    //     console.log(`send success`)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    
 
     //  const request =  my.downloadFile({
     //   url:'http://localhost/SVN.pdf',
