@@ -793,17 +793,20 @@ module.exports = {
     (0, _PROMISE2.default)(function (SUCCESS) {
       (0, _TASK2.default)(quick_files, function (quick_file, callback) {
         var filePath = quick_file.uri;
-        var name = quick_file.name;
+        var fileName = quick_file.name;
+        var fileType = 'image';
         my.uploadFile({
           url: quick_url,
-          name: name,
+          fileName: fileName,
           filePath: filePath,
+          fileType: fileType,
           header: quick_header,
           formData: quick_data[0],
           success: function success(my_res) {
             var quick_res = {
               code: my_res.statusCode,
-              data: my_res.data
+              data: my_res.data,
+              headers: my_res.header
             };
             callback(quick_res);
           }
@@ -828,8 +831,6 @@ module.exports = {
     var quick_fail = quick_object.fail;
     var quick_complete = quick_object.complete;
     var quick_url = quick_object.url;
-    var filename = quick_object.filename || quick_url.substring(quick_url.lastIndexOf('/') + 1);
-    var filePath = my.env.USER_DATA_PATH + '/' + filename;
     quick_object = null;
     var my_object = {
       url: quick_url
@@ -837,11 +838,10 @@ module.exports = {
     (0, _PROMISE2.default)(function (SUCCESS) {
       my.downloadFile({
         url: quick_url,
-        filePath: filePath,
         success: function success(my_res) {
           var token = '' + new Date().getTime();
           var quick_res = {
-            tempFilePath: my_res.apFilePath,
+            apFilePath: my_res.apFilePath,
             token: token
           };
           SUCCESS(quick_res);
@@ -925,16 +925,14 @@ module.exports = {
       my.request({
         url: quick_url,
         data: quick_data,
-        header: quick_header,
+        headers: quick_header,
         method: quick_method,
-        responseType: quick_responseType,
+        dataType: quick_responseType,
         success: function success(my_res) {
           var quick_res = {
-            code: my_res.statusCode,
+            code: my_res.status,
             data: my_res.data,
-            headers: my_res.header,
-            cookies: my_res.cookies,
-            profile: my_res.profile
+            headers: my_res.headers
           };
           SUCCESS(quick_res);
         }
@@ -961,23 +959,8 @@ module.exports = {
     if (!quick_object) {
       return null;
     }
-    // const url = quick_object.url
-    // const header = quick_object.header
-    // const protocols = quick_object.protocols
-    // // /////////////////////////////////////////
-    // const DATA = ['HTTPS', 'HTTP']
-    // const my_object = {
-    //   url,
-    //   header,
-    //   protocols: []
-    // }
-    // for (const protocol of protocols) {
-    //   if (DATA.indexOf(protocol.toLowerCase()) >= 0) {
-    //     my_object.protocols.push(protocol)
-    //   }
-    // }
-    var socket = my.connectSocket(quick_object);
-    return new _WebSocket2.default(socket);
+    console.log('00000000000000');
+    return new _WebSocket2.default(quick_object);
   }
 }; /* eslint-disable camelcase */
 
@@ -990,9 +973,15 @@ module.exports = {
 
 exports.__esModule = true;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _PROMISE = __webpack_require__(0);
 
-/* eslint-disable camelcase */
+var _PROMISE2 = _interopRequireDefault(_PROMISE);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /* eslint-disable camelcase */
+
+
 var WebSocket = function () {
   function WebSocket(socket) {
     _classCallCheck(this, WebSocket);
@@ -1005,7 +994,29 @@ var WebSocket = function () {
   };
 
   WebSocket.prototype.send = function send(quick_object) {
-    this.socket.send(quick_object);
+    var quick_url = this.socket.url;
+    var quick_header = this.socket.header;
+    // const quick_protocols = this.socket.protocols
+    var quick_data = quick_object.data;
+    var quick_success = quick_object.success;
+    var quick_fail = quick_object.fail;
+    var quick_complete = quick_object.complete;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      console.log('11111111111111');
+      my.connectSocket({
+        url: quick_url,
+        header: quick_header
+      });
+      my.sendSocketMessage({
+        data: quick_data,
+        success: function success() {
+          var quick_res = {
+            success: true
+          };
+          SUCCESS(quick_res);
+        }
+      });
+    }, quick_success, quick_fail, quick_complete);
   };
 
   WebSocket.prototype.onopen = function onopen(callback) {

@@ -5,53 +5,159 @@ const configuration = quickapp2alipay["@system.configuration"]
 const prompt = quickapp2alipay["@system.prompt"]
 const request = quickapp2alipay["@system.request"]
 
+const websocketfactory  = quickapp2alipay["@system.websocketfactory"]
+//const fetch = quickapp2alipay["@system.fetch"]
+
 Page({
   onLoad(e) {
-    request.download({
-  url: 'http://localhost/a.html',
-  success: function(data) {
-    console.log(data)
+  //   console.log(my.canIUse('connectSocket'));
+  //  const res=  my.connectSocket({
+  //     url: 'wss://example.qq.com',
+  //     success:res=>{
+  //       console.log(res)
+  //     }
+  //   })
+  //   console.log(res)
+    // res.send({
+    //   data:'sss',
+    //   success:res=>{
+    //     console.log(res)
+    //   }
+    // })
+    const ws = websocketfactory.create({
+  url: 'wss://www.example.com',
+  header: {
+    'content-type': 'application/json'
+  },
+  protocols: ['protocol']
+})
+ws.send({
+  data: 'send message',
+  success: function() {
+    console.log(`send success`)
   },
   fail: function(data, code) {
     console.log(`handling fail, code = ${code}`)
   }
 })
-   
-//     prompt.showContextMenu({
-//   itemList: ['item1', 'item2'],
-//   itemColor: '#ff33ff',
-//   success: function(data) {
-//     console.log(data)
-//   },
-//   cancel: function() {
-//     console.log('handling cancel')
-//   },
-//   fail: function(data, code) {
-//     console.log(`handling fail, code = ${code}`)
-//   }
-// })
-//     prompt.showDialog({
-//   title: 'title',
-//   message: 'message',
-//   buttons: [
-//     {
-//       text: 'btn',
-//       color: '#33dd44'
-//     }
-//   ],
-//   success: function(data) {
-//     console.log(data)
-//   },
-//   cancel: function() {
-//     console.log('handling cancel')
-//   },
-//   fail: function(data, code) {
-//     console.log(`handling fail, code = ${code}`)
-//   }
-// })
-//     prompt.showToast({
-//   message: 'message'
-// })
+    // fetch.fetch({
+    //   url: 'https://www.onekit.cn',
+    //   responseType: 'text',
+    //   success: function (response) {
+    //     console.log(response)
+    //   },
+    //   fail: function (data, code) {
+    //     console.log(`handling fail, errMsg = ${data}`)
+    //     console.log(`handling fail, errCode = ${code}`)
+    //   }
+    // })
+
+    //  const request =  my.downloadFile({
+    //   url:'http://localhost/SVN.pdf',
+    //   success:res=>{
+    //     console.log(res)
+    //   }
+    //   })
+    // request.onProgressUpdate(res=>{
+    //     console.log(res)
+    //   })
+    //   console.log(request)
+
+
+
+
+    // my.chooseImage({
+    //   count: 0,
+    //   sizeType: [],
+    //   sourceType: [],
+    //   success: (result) => {
+    //     request.upload({
+    //   url: 'https://www.onekit.cn',
+    //   files: [
+    //     {
+    //       uri: result.apFilePaths[0],
+    //       name: 'file1',
+    //       filename: 'test.png'
+    //     }
+    //   ],
+    //   data: [
+    //     {
+    //       name: 'param1',
+    //       value: 'value1'
+    //     }
+    //   ],
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    //     console.log(result)
+    //   },
+    //   fail: () => {
+
+    //   },
+    //   complete: () => {
+
+    //   }
+    // });
+
+    //     request.download({
+    //   url: 'http://localhost/a.html',
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    // request.onDownloadComplete({
+    //   token: '',
+    //   success: function(data) {
+    //     console.log(`handling success${data.uri}`)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+
+
+    //     prompt.showContextMenu({
+    //   itemList: ['item1', 'item2'],
+    //   itemColor: '#ff33ff',
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   cancel: function() {
+    //     console.log('handling cancel')
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    //     prompt.showDialog({
+    //   title: 'title',
+    //   message: 'message',
+    //   buttons: [
+    //     {
+    //       text: 'btn',
+    //       color: '#33dd44'
+    //     }
+    //   ],
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   cancel: function() {
+    //     console.log('handling cancel')
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    //     prompt.showToast({
+    //   message: 'message'
+    // })
     // my.showActionSheet({
     //   title: '支付宝-ActionSheet',
     //   items: ['菜单一', '菜单二', '菜单三'],
@@ -64,10 +170,10 @@ Page({
     //     console.log(res)
     //   },
     // });
-//     const locale = configuration.getLocale()
-// console.log(locale)
-// const themeMode = configuration.getThemeMode()
-// console.log(`Theme mode is ${themeMode} now~`)
+    //     const locale = configuration.getLocale()
+    // console.log(locale)
+    // const themeMode = configuration.getThemeMode()
+    // console.log(`Theme mode is ${themeMode} now~`)
     //     router.push({
     //   uri: '/',
     //   params: {

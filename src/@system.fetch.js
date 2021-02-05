@@ -20,16 +20,14 @@ module.exports = {
       my.request({
         url: quick_url,
         data: quick_data,
-        header: quick_header,
+        headers: quick_header,
         method: quick_method,
-        responseType: quick_responseType,
+        dataType: quick_responseType,
         success: my_res => {
           const quick_res = {
-            code: my_res.statusCode,
+            code: my_res.status,
             data: my_res.data,
-            headers: my_res.header,
-            cookies: my_res.cookies,
-            profile: my_res.profile
+            headers: my_res.headers,
           }
           SUCCESS(quick_res)
         }

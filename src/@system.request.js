@@ -21,17 +21,20 @@ module.exports = {
     PROMISE((SUCCESS) => {
       TASK(quick_files, (quick_file, callback) => {
         const filePath = quick_file.uri
-        const name = quick_file.name
+        const fileName = quick_file.name
+        const fileType = 'image'
         my.uploadFile({
           url: quick_url,
-          name,
+          fileName,
           filePath,
+          fileType,
           header: quick_header,
           formData: quick_data[0],
           success: my_res => {
             const quick_res = {
               code: my_res.statusCode,
-              data: my_res.data
+              data: my_res.data,
+              headers: my_res.header
             }
             callback(quick_res)
           }
@@ -55,8 +58,6 @@ module.exports = {
     const quick_fail = quick_object.fail
     const quick_complete = quick_object.complete
     const quick_url = quick_object.url
-    const filename = quick_object.filename || quick_url.substring(quick_url.lastIndexOf('/') + 1)
-    const filePath = my.env.USER_DATA_PATH + '/' + filename
     quick_object = null
     const my_object = {
       url: quick_url
@@ -64,11 +65,10 @@ module.exports = {
     PROMISE((SUCCESS) => {
       my.downloadFile({
         url: quick_url,
-        filePath,
         success: my_res => {
           const token = '' + new Date().getTime()
           const quick_res = {
-            tempFilePath: my_res.apFilePath,
+            apFilePath: my_res.apFilePath,
             token
           }
           SUCCESS(quick_res)
