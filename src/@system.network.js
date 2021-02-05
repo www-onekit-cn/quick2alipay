@@ -17,7 +17,7 @@ module.exports = {
         success: my_res => {
           let quick_res_type
           switch (my_res.networkType) {
-            case 'unknown':
+            case 'UNKNOWN':
               quick_res_type = 'others'
               break
             default:
@@ -25,6 +25,7 @@ module.exports = {
               break
           }
           const quick_res = {
+            networkAvailable: my_res.networkAvailable,
             type: quick_res_type,
             metered: false
           }

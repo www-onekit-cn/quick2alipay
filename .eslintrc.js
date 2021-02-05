@@ -97,7 +97,8 @@ module.exports = {
     'Component': true,
     'my': true,
     'getCurrentPages': true,
-    'getApp':true,
-    'basement':true
+    'getApp': true,
+    'basement': true
+
   }
 }

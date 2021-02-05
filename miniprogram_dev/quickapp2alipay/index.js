@@ -483,12 +483,12 @@ var _Video = __webpack_require__(64);
 
 var _Video2 = _interopRequireDefault(_Video);
 
+var _system51 = __webpack_require__(65);
+
+var _system52 = _interopRequireDefault(_system51);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
-/* eslint-disable no-console */
 exports.default = {
   OnekitApp: _OnekitApp2.default,
   OnekitBehavior: _OnekitBehavior2.default,
@@ -519,9 +519,13 @@ exports.default = {
   '@system.media': _system46.default,
   '@system.image': _system48.default,
   '@system.audio': _system50.default,
-  '@hap.io.Video': _Video2.default
+  '@hap.io.Video': _Video2.default,
+  '@system.cipher': _system52.default
 
-};
+}; /* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
 
 /***/ }),
 /* 34 */
@@ -1652,12 +1656,7 @@ module.exports = {
     if (!quick_object) {
       return;
     }
-    var quick_interval = quick_object.interval || 'normal';
     var quick_callback = quick_object.callback;
-    var my_object = {
-      interval: quick_interval
-    };
-    my.startAccelerometer(my_object);
     my.onAccelerometerChange(function (my_res) {
       var quick_res = {
         x: my_res.x,
@@ -1679,12 +1678,10 @@ module.exports = {
     if (!quick_object) {
       return;
     }
-    my.startCompass();
     var quick_callback = quick_object.callback;
     my.onCompassChange(function (res) {
       quick_callback({
-        direction: res.direction,
-        accuracy: res.accuracy
+        direction: res.direction
       });
     });
   },
@@ -1794,8 +1791,8 @@ module.exports = {
     var quick_text = quick_object.text;
     quick_object = null;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.setClipboardData({
-        data: quick_text,
+      my.setClipboard({
+        text: quick_text,
         success: function success() {
           var quick_res = {
             errMsg: 'set: ok'
@@ -1814,10 +1811,10 @@ module.exports = {
     var quick_complete = quick_object.complete;
     quick_object = null;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.getClipboardData({
+      my.getClipboard({
         success: function success(my_res) {
           var quick_res = {
-            text: my_res.data
+            text: my_res.text
           };
           SUCCESS(quick_res);
         }
@@ -1847,22 +1844,34 @@ module.exports = {
     var quick_success = quick_object.success;
     var quick_fail = quick_object.fail;
     var quick_complete = quick_object.complete;
-    var quick_timeout = quick_object.timeout || 3000;
+    var quick_timeout = quick_object.timeout || 30000;
     var quick_coordType = quick_object.coordType || 'wgs84';
     quick_object = null;
+    var type = void 0;
+    if (quick_coordType === 'wgs84') {
+      type = 0;
+    } else {
+      type = 1;
+    }
     (0, _PROMISE2.default)(function (SUCCESS) {
       my.getLocation({
-        type: quick_coordType,
-        highAccuracyExpireTime: quick_timeout,
+        type: type,
+        cacheTimeout: quick_timeout,
         success: function success(my_res) {
           var quick_res = {
             latitude: my_res.latitude,
             longitude: my_res.longitude,
-            speed: my_res.speed,
             accuracy: my_res.accuracy,
-            altitude: my_res.altitude,
-            verticalAccuracy: my_res.verticalAccuracy,
             horizontalAccuracy: my_res.horizontalAccuracy,
+            country: my_res.country,
+            countryCode: my_res.countryCode,
+            province: my_res.province,
+            city: my_res.city,
+            cityAdcode: my_res.cityAdcode,
+            district: my_res.district,
+            districtAdcode: my_res.districtAdcode,
+            streetNumber: my_res.streetNumber,
+            pois: my_res.pois,
             time: new Date().getTime()
           };
           SUCCESS(quick_res);
@@ -1885,11 +1894,17 @@ module.exports = {
     var quick_name = quick_object.name || '';
     var quick_address = quick_object.address || '';
     quick_object = null;
+    var scale = void 0;
+    if (quick_scale === 18) {
+      scale = 15;
+    } else {
+      scale = 17 / 14;
+    }
     (0, _PROMISE2.default)(function (SUCCESS) {
       my.openLocation({
         latitude: quick_latitude,
         longitude: quick_longitude,
-        scale: quick_scale,
+        scale: scale,
         name: quick_name,
         address: quick_address,
         success: function success() {
@@ -1915,21 +1930,55 @@ module.exports = {
     var quick_longitude = quick_object.longitude;
     var quick_coordType = quick_object.coordType || 'wgs84';
     quick_object = null;
+    var type = void 0;
+    if (quick_coordType === 'wgs84') {
+      type = 0;
+    } else {
+      type = 1;
+    }
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.chooseLocation({
-        latitude: quick_latitude,
-        longitude: quick_longitude,
-        success: function success(my_res) {
-          var quick_res = {
-            name: my_res.name,
-            address: my_res.address,
-            latitude: my_res.latitude,
-            longitude: my_res.longitude,
-            coordType: quick_coordType
-          };
-          SUCCESS(quick_res);
-        }
-      });
+      if (quick_latitude == null || quick_longitude == null) {
+        my.getLocation({
+          type: type,
+          success: function success(my_res) {
+            var quick_res = {
+              latitude: my_res.latitude,
+              longitude: my_res.longitude,
+              accuracy: my_res.accuracy,
+              horizontalAccuracy: my_res.horizontalAccuracy,
+              country: my_res.country,
+              countryCode: my_res.countryCode,
+              province: my_res.province,
+              city: my_res.city,
+              cityAdcode: my_res.cityAdcode,
+              district: my_res.district,
+              districtAdcode: my_res.districtAdcode,
+              streetNumber: my_res.streetNumber,
+              pois: my_res.pois,
+              time: new Date().getTime(),
+              coordType: type
+            };
+            SUCCESS(quick_res);
+          }
+        });
+      } else {
+        my.chooseLocation({
+          latitude: quick_latitude,
+          longitude: quick_longitude,
+          success: function success(my_res) {
+            var quick_res = {
+              name: my_res.name,
+              address: my_res.address,
+              latitude: my_res.latitude,
+              longitude: my_res.longitude,
+              coordType: type,
+              provinceName: my_res.provinceName,
+              cityName: my_res.cityName
+            };
+            SUCCESS(quick_res);
+          }
+        });
+      }
     }, quick_success, quick_fail, quick_complete);
   },
 
@@ -1948,31 +1997,33 @@ module.exports = {
 
   /** geolocation.subscribe */
 
-  subscribe: function subscribe(quick_object) {
-    if (!quick_object) {
-      return;
-    }
-    my.startLocationUpdate();
-    var quick_callback = quick_object.callback;
-    quick_object = null;
-    my.onLocationChange(function (my_res) {
-      var quick_res = {
-        latitude: my_res.latitude,
-        longitude: my_res.longitude,
-        speed: my_res.speed,
-        accuracy: my_res.accuracy,
-        altitude: my_res.altitude,
-        verticalAccuracy: my_res.verticalAccuracy,
-        horizontalAccuracy: my_res.horizontalAccuracy,
-        time: new Date().getTime()
-      };
-      quick_callback(quick_res);
-    });
+  subscribe: function subscribe() {
+    // if (!quick_object) {
+    //   return
+    // }
+    // my.startLocationUpdate()
+    // const quick_callback = quick_object.callback
+    // quick_object = null
+    // my.onLocationChange(function (my_res) {
+    //   const quick_res = {
+    //     latitude: my_res.latitude,
+    //     longitude: my_res.longitude,
+    //     speed: my_res.speed,
+    //     accuracy: my_res.accuracy,
+    //     altitude: my_res.altitude,
+    //     verticalAccuracy: my_res.verticalAccuracy,
+    //     horizontalAccuracy: my_res.horizontalAccuracy,
+    //     time: new Date().getTime()
+    //   }
+    //   quick_callback(quick_res)
+    // })
+    console.log('subscribe is not support');
   },
 
   /** my.offLocationChange */
   unsubscribe: function unsubscribe() {
-    my.offLocationChange();
+    // my.offLocationChange()
+    console.log('unsubscribe is not support');
   },
 
   /** geolocation.getSupportedCoordTypes() */
@@ -2023,7 +2074,7 @@ module.exports = {
         success: function success(my_res) {
           var quick_res_type = void 0;
           switch (my_res.networkType) {
-            case 'unknown':
+            case 'UNKNOWN':
               quick_res_type = 'others';
               break;
             default:
@@ -2031,6 +2082,7 @@ module.exports = {
               break;
           }
           var quick_res = {
+            networkAvailable: my_res.networkAvailable,
             type: quick_res_type,
             metered: false
           };
@@ -2238,7 +2290,7 @@ module.exports = {
     var quick_value = quick_object.value;
     quick_object = null;
     var my_object = {
-      value: quick_value / 255,
+      brightness: quick_value / 255,
       success: quick_success,
       fail: quick_fail,
       complete: quick_complete
@@ -2262,7 +2314,7 @@ module.exports = {
       my.getScreenBrightness({
         success: function success(my_res) {
           var quick_res = {
-            value: my_res.value * 255
+            value: my_res.brightness * 255
           };
           SUCCESS(quick_res);
         }
@@ -3208,6 +3260,64 @@ var Video = function () {
 }();
 
 exports.default = Video;
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _cryptoJs = __webpack_require__(66);
+
+var _cryptoJs2 = _interopRequireDefault(_cryptoJs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = {
+  aes: function aes(quick_object) {
+    var quick_action = quick_object.action;
+    var quick_text = quick_object.text;
+    var quick_key = quick_object.key;
+    var quick_transformation = quick_object.transformation || 'AES/CBC/PKCS5Padding';
+    var quick_iv = quick_object.iv || quick_key;
+    var quick_ivOffset = quick_object.ivOffset || 0;
+    var quick_ivLen = quick_object.ivLen || 16;
+    var quick_success = quick_object.success;
+    quick_object = null;
+
+    // ///////////////////////
+    var transformations = quick_transformation.split('/');
+    var options = {
+      iv: quick_iv,
+      offset: quick_ivOffset,
+      length: quick_ivLen,
+      mode: _cryptoJs2.default.mode[transformations[1]],
+      padding: _cryptoJs2.default.pad[transformations[2]]
+    };
+
+    if (quick_action === 'encrypt') {
+      var ciphertext = _cryptoJs2.default.AES.encrypt(quick_text, quick_key, options).toString();
+      console.log(ciphertext);
+      quick_success({
+        text: ciphertext
+      });
+    } else {
+      var bytes = _cryptoJs2.default.AES.decrypt(quick_text, quick_key, options);
+      var decryptedData = bytes.toString(_cryptoJs2.default.enc.Utf8);
+      quick_success({
+        text: decryptedData
+      });
+    }
+  }
+}; /* eslint-disable no-console */
+/* eslint-disable camelcase */
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+module.exports = require("crypto-js");
 
 /***/ })
 /******/ ]);

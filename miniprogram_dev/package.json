@@ -1,5 +1,6 @@
 {
 	"dependencies": {
-		"oneutil": "2.3.5"
+		"oneutil": "2.3.5",
+		"crypto-js": "latest"
 	}
 }

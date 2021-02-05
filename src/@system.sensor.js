@@ -5,12 +5,7 @@ module.exports = {
     if (!quick_object) {
       return
     }
-    const quick_interval = quick_object.interval || 'normal'
     const quick_callback = quick_object.callback
-    const my_object = {
-      interval: quick_interval,
-    }
-    my.startAccelerometer(my_object)
     my.onAccelerometerChange(my_res => {
       const quick_res = {
         x: my_res.x,
@@ -30,12 +25,10 @@ module.exports = {
     if (!quick_object) {
       return
     }
-    my.startCompass()
     const quick_callback = quick_object.callback
     my.onCompassChange(function (res) {
       quick_callback({
-        direction: res.direction,
-        accuracy: res.accuracy
+        direction: res.direction
       })
     })
   },
