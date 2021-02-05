@@ -959,7 +959,6 @@ module.exports = {
     if (!quick_object) {
       return null;
     }
-    console.log('00000000000000');
     return new _WebSocket2.default(quick_object);
   }
 }; /* eslint-disable camelcase */
@@ -979,7 +978,8 @@ var _PROMISE2 = _interopRequireDefault(_PROMISE);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /* eslint-disable camelcase */
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /* eslint-disable class-methods-use-this */
+/* eslint-disable camelcase */
 
 
 var WebSocket = function () {
@@ -990,7 +990,7 @@ var WebSocket = function () {
   }
 
   WebSocket.prototype.close = function close(quick_object) {
-    this.socket.close(quick_object);
+    return my.closeSocket(quick_object);
   };
 
   WebSocket.prototype.send = function send(quick_object) {
@@ -1002,44 +1002,43 @@ var WebSocket = function () {
     var quick_fail = quick_object.fail;
     var quick_complete = quick_object.complete;
     (0, _PROMISE2.default)(function (SUCCESS) {
-      console.log('11111111111111');
+      console.log('1111111111111');
       my.connectSocket({
         url: quick_url,
         header: quick_header
       });
-      my.sendSocketMessage({
-        data: quick_data,
-        success: function success() {
-          var quick_res = {
-            success: true
-          };
-          SUCCESS(quick_res);
-        }
+      my.onSocketOpen(function () {
+        console.log('已连接');
+        my.sendSocketMessage({
+          data: quick_data,
+          success: function success() {
+            var quick_res = {
+              success: true
+            };
+            SUCCESS(quick_res);
+          },
+          fail: function fail(res) {
+            console.log(res);
+          }
+        });
       });
     }, quick_success, quick_fail, quick_complete);
   };
 
   WebSocket.prototype.onopen = function onopen(callback) {
-    this.socket.onOpen(callback);
+    return my.onSocketOpen(callback);
   };
 
   WebSocket.prototype.onmessage = function onmessage(callback) {
-    this.socket.onMessage(callback);
+    return my.onSocketMessage(callback);
   };
 
   WebSocket.prototype.onclose = function onclose(callback) {
-    this.socket.onClose(function (my_res) {
-      var quick_res = {
-        code: my_res.code,
-        reason: my_res.reason,
-        wasClean: 'normal closure'
-      };
-      callback(quick_res);
-    });
+    return my.onSocketClose(callback);
   };
 
   WebSocket.prototype.onerror = function onerror(callback) {
-    this.socket.onError(callback);
+    return my.onerror(callback);
   };
 
   return WebSocket;

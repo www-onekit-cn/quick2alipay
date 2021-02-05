@@ -6,7 +6,6 @@ module.exports = {
     if (!quick_object) {
       return null
     }
-    console.log('00000000000000')
     return new WebSocket(quick_object)
   }
 

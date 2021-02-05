@@ -5,41 +5,56 @@ const configuration = quickapp2alipay["@system.configuration"]
 const prompt = quickapp2alipay["@system.prompt"]
 const request = quickapp2alipay["@system.request"]
 
-const websocketfactory  = quickapp2alipay["@system.websocketfactory"]
+const websocketfactory = quickapp2alipay["@system.websocketfactory"]
 //const fetch = quickapp2alipay["@system.fetch"]
 
 Page({
   onLoad(e) {
-  //   console.log(my.canIUse('connectSocket'));
-  //  const res=  my.connectSocket({
-  //     url: 'wss://example.qq.com',
-  //     success:res=>{
+    //   console.log(my.canIUse('connectSocket'));
+  //   my.connectSocket({
+  //     url: 'wss://echo.websocket.org',
+  //     success: res => {
   //       console.log(res)
   //     }
   //   })
-  //   console.log(res)
-    // res.send({
-    //   data:'sss',
-    //   success:res=>{
-    //     console.log(res)
-    //   }
-    // })
-    const ws = websocketfactory.create({
-  url: 'wss://www.example.com',
-  header: {
-    'content-type': 'application/json'
-  },
-  protocols: ['protocol']
-})
-ws.send({
-  data: 'send message',
-  success: function() {
-    console.log(`send success`)
-  },
-  fail: function(data, code) {
-    console.log(`handling fail, code = ${code}`)
-  }
-})
+  //   my.onSocketOpen(function (res) {
+  //     my.sendSocketMessage({
+  //     data: 'ssss',
+  //     success: res => {
+  //       console.log(res)
+  //     },fail:res=>{
+  //       console.log(res)
+  //     }
+  //   })
+  //     console.log('WebSocket 连接已打开！');
+  //   });
+  // setTimeout(res=>{
+
+  // },10000) 
+
+
+        const ws = websocketfactory.create({
+      url: 'wss://echo.websocket.org',
+      header: {
+        'content-type': 'application/json'
+      },
+      protocols: ['protocol']
+    })
+    my.closeSocket({
+      success:res=>{
+        console.log(res)
+      }
+    })
+   
+    ws.send({
+      data: 'send message',
+      success: function() {
+        console.log(`send success`)
+      },
+      fail: function(data, code) {
+        console.log(`handling fail, code = ${code}`)
+      }
+    })
     // fetch.fetch({
     //   url: 'https://www.onekit.cn',
     //   responseType: 'text',

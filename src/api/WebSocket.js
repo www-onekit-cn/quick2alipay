@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable camelcase */
 import PROMISE from '../../node_modules/oneutil/PROMISE'
 
@@ -7,7 +8,7 @@ export default class WebSocket {
   }
 
   close(quick_object) {
-    this.socket.close(quick_object)
+    return my.closeSocket(quick_object)
   }
 
   send(quick_object) {
@@ -19,43 +20,37 @@ export default class WebSocket {
     const quick_fail = quick_object.fail
     const quick_complete = quick_object.complete
     PROMISE((SUCCESS) => {
-      console.log('11111111111111')
       my.connectSocket({
         url: quick_url,
-        header: quick_header
+        header: quick_header,
       })
-      my.sendSocketMessage({
-        data: quick_data,
-        success: () => {
-          const quick_res = {
-            success: true
+      my.onSocketOpen(() => {
+        my.sendSocketMessage({
+          data: quick_data,
+          success: () => {
+            const quick_res = {
+              success: true
+            }
+            SUCCESS(quick_res)
           }
-          SUCCESS(quick_res)
-        }
+        })
       })
     }, quick_success, quick_fail, quick_complete)
   }
 
   onopen(callback) {
-    this.socket.onOpen(callback)
+    return my.onSocketOpen(callback)
   }
 
   onmessage(callback) {
-    this.socket.onMessage(callback)
+    return my.onSocketMessage(callback)
   }
 
   onclose(callback) {
-    this.socket.onClose(function (my_res) {
-      const quick_res = {
-        code: my_res.code,
-        reason: my_res.reason,
-        wasClean: 'normal closure',
-      }
-      callback(quick_res)
-    })
+    return my.onSocketClose(callback)
   }
 
   onerror(callback) {
-    this.socket.onError(callback)
+    return my.onerror(callback)
   }
 }
