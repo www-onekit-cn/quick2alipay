@@ -30,6 +30,6 @@ module.exports = {
   /** record.stop */
   stop() {
     const recorderManager = my.getRecorderManager()
-    recorderManager.start()
+    recorderManager.stop()
   }
 }

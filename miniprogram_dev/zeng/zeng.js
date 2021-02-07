@@ -1,78 +1,129 @@
 import quickapp2alipay from '../quickapp2alipay/index'
+import CryptoJS from '../node_modules/crypto-js'
+const router = quickapp2alipay['@system.router']
+const media = quickapp2alipay['@system.media']
+const configuration = quickapp2alipay['@system.configuration']
+const prompt = quickapp2alipay['@system.prompt']
+const request = quickapp2alipay['@system.request']
 
-const router = quickapp2alipay["@system.router"]
-const media = quickapp2alipay["@system.media"]
-const configuration = quickapp2alipay["@system.configuration"]
-const prompt = quickapp2alipay["@system.prompt"]
-const request = quickapp2alipay["@system.request"]
-
-const websocketfactory = quickapp2alipay["@system.websocketfactory"]
-const storage = quickapp2alipay["@system.storage"]
-const file = quickapp2alipay["@system.file"]
-const Fetch = quickapp2alipay["@system.fetch"]
-const vibrator = quickapp2alipay["@system.vibrator"]
-const barcode = quickapp2alipay["@system.barcode"]
-const sensor = quickapp2alipay["@system.sensor"]
-const clipboard = quickapp2alipay["@system.clipboard"]
-const geolocation = quickapp2alipay["@system.geolocation"]
-const network = quickapp2alipay["@system.network"]
-const device = quickapp2alipay["@system.device"]
-const brightness = quickapp2alipay["@system.brightness"]
-const battery = quickapp2alipay["@system.battery"]
-const cipher = quickapp2alipay["@system.cipher"]
+const websocketfactory = quickapp2alipay['@system.websocketfactory']
+const storage = quickapp2alipay['@system.storage']
+const file = quickapp2alipay['@system.file']
+const Fetch = quickapp2alipay['@system.fetch']
+const vibrator = quickapp2alipay['@system.vibrator']
+const barcode = quickapp2alipay['@system.barcode']
+const sensor = quickapp2alipay['@system.sensor']
+const clipboard = quickapp2alipay['@system.clipboard']
+const geolocation = quickapp2alipay['@system.geolocation']
+const network = quickapp2alipay['@system.network']
+const device = quickapp2alipay['@system.device']
+const brightness = quickapp2alipay['@system.brightness']
+const battery = quickapp2alipay['@system.battery']
+const cipher = quickapp2alipay['@system.cipher']
+const record  = quickapp2alipay['@system.record']
+const wifi  = quickapp2alipay['@system.wifi']
 
 Page({
   onLoad(e) {
-   
-    cipher.aes({
-  action: 'encrypt',
-  //待加密的文本内容
-  text: 'hello',
-  //base64编码后的密钥
-  key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',
-  transformation: 'AES/CBC/PKCS5Padding',
-  ivOffset: 0,
-  ivLen: 16,
-  success: data => {
-    console.log(`handling success: ${data.text}`)
-    
-// cipher.aes({
-//   action: 'decrypt',
-//   //待解密的内容，是base64编码后的一段二进制值
-//   text:data.text,
-//   //base64编码后的密钥
-//   key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',
-//   transformation: 'AES/CBC/PKCS5Padding',
-//   ivOffset: 0,
-//   ivLen: 16,
-//   success: data => {
-//    console.log(data)
+//     console.log(my.canIUse('connectWifi'))
+// //     wifi.onscanned = function(data) {
+// //   console.log(data)
+// // }
+// my.startWifi({
+//   success:res=>{
+//      my.getConnectedWifi({
+//   success: function(data) {
+//     console.log(data)
 //   },
-//   fail: (data) => {
+//   fail: function(data) {
 //     console.log(data)
 //   }
 // })
-  },
-  fail: (data, code) => {
-    console.log(`### cipher.aes fail ### ${code}: ${data}`)
-  }
-})
+//     console.log(res,'success')
+//   },fail:err=>{
+//     console.log(err,'error')
+//   }
+// })
+var obj = {}; //或者 var obj=new Object();
+var key = "name";
+var value = "张三丰"
+obj[key] = value;
+obj.name = "sss"
+console.log(obj)
+   
+//     wifi.connect({
+//   SSID: '',
+//   BSSID: '',
+//   success: function() {
+//     console.log('connect wifi success')
+//   },
+//   fail: function(data) {
+//     console.log(data)
+//   }
+// })
+//     record.start({
+//   duration: 10000,
+//   sampleRate: 8000,
+//   numberOfChannels: 1,
+//   encodeBitRate: 16000,
+//   format: 'aac',
+//   success: function(data) {
+//     console.log(data)
+//   },
+//   fail: function(data, code) {
+//     console.log(`handling fail, code = ${code}`)
+//   }
+// })
+// record.stop()
+    //   cipher.aes({
+    // action: 'encrypt',
+    // //待加密的文本内容
+    // text: 'hello',
+    // //base64编码后的密钥
+    // key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',
+    // transformation: 'AES/CBC/PKCS5Padding',
+    // ivOffset: 0,
+    // ivLen: 16,
+    // success: data => {
+    //   console.log(`handling success: ${data.text}`)
 
-    // var data = [{
+    // cipher.aes({
+    //   action: 'decrypt',
+    //   //待解密的内容，是base64编码后的一段二进制值
+    //   text:data.text,
+    //   //base64编码后的密钥
+    //   key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',
+    //   transformation: 'AES/CBC/PKCS5Padding',
+    //   ivOffset: 0,
+    //   ivLen: 16,
+    //   success: data => {
+    //    console.log(data)
+    //   },
+    //   fail: (data) => {
+    //     console.log(data)
+    //   }
+    // })
+    //   },
+    //   fail: (data, code) => {
+    //     console.log(`### cipher.aes fail ### ${code}: ${data}`)
+    //   }
+    // })
+
+    // const data = [{
     //   id: 1
     // }, {
     //   id: 2
     // }]
 
     // // Encrypt
-    // var ciphertext = CryptoJS.AES.encrypt("my bank password", 'key1111111').toString();
+    // const ciphertext = CryptoJS.AES.encrypt('my bank password', 'key1111111').toString()
     // console.log(ciphertext)
 
     // // Decrypt
-    // var bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
-    // var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    // const bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123')
+    // const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
 
-    // console.log(decryptedData); // [{id: 1}, {id: 2}]
+    // console.log(decryptedData) // [{id: 1}, {id: 2}]
     //     battery.getStatus({
     //   success: function(data) {
     //     console.log(data)
@@ -113,7 +164,7 @@ Page({
     //     console.log(data)
     //   }
     // })
-    //     console.log(my.canIUse('onLocationChange')); 
+    //     console.log(my.canIUse('onLocationChange'));
     //     geolocation.subscribe({
     //   callback: function(data) {
     //     console.log(
@@ -319,7 +370,7 @@ Page({
     //     console.log(`handling fail, code = ${code}`)
     //   }
     // })
-    //const buffer = new ArrayBuffer(8)
+    // const buffer = new ArrayBuffer(8)
     // file.writeArrayBuffer({
     //   uri: 'internal://files/dir/b.txt',
     //   buffer: buffer,
@@ -438,7 +489,7 @@ Page({
     //   });
     // setTimeout(res=>{
 
-    // },10000) 
+    // },10000)
 
 
     //     const ws = websocketfactory.create({
@@ -475,8 +526,6 @@ Page({
     //     console.log(res)
     //   })
     //   console.log(request)
-
-
 
 
     // my.chooseImage({
@@ -604,4 +653,4 @@ Page({
     //   path: '/'
     // })
   }
-});
+})
