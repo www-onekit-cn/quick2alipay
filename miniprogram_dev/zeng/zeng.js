@@ -1,5 +1,5 @@
 import quickapp2alipay from '../quickapp2alipay/index'
-// import CryptoJS from '../node_modules/crypto-js'
+import  '../node_modules/crypto-js'
 const router = quickapp2alipay['@system.router']
 const media = quickapp2alipay['@system.media']
 const configuration = quickapp2alipay['@system.configuration']
@@ -26,13 +26,63 @@ const bluetooth = quickapp2alipay['@system.bluetooth']
 const zip = quickapp2alipay['@system.zip']
 const image = quickapp2alipay['@system.image']
 //const Video = quickapp2alipay['@hap.io.Video']
-const Video = quickapp2alipay['@Video']
-const audio = quickapp2alipay['@system.audio']
+//const Video = quickapp2alipay['@Video']
+//const audio = quickapp2alipay['@system.audio']
+
 
 
 
 Page({
   onLoad(e) {
+       cipher.aes({
+    action: 'encrypt',
+    //待加密的文本内容
+    text: 'hello',
+    //base64编码后的密钥
+    key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',
+    transformation: 'AES/CBC/PKCS5Padding',
+    ivOffset: 0,
+    ivLen: 16,
+    success: data => {
+      console.log(`handling success: ${data.text}`)
+
+    // cipher.aes({
+    //   action: 'decrypt',
+    //   //待解密的内容，是base64编码后的一段二进制值
+    //   text:data.text,
+    //   //base64编码后的密钥
+    //   key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',
+    //   transformation: 'AES/CBC/PKCS5Padding',
+    //   ivOffset: 0,
+    //   ivLen: 16,
+    //   success: data => {
+    //    console.log(data)
+    //   },
+    //   fail: (data) => {
+    //     console.log(data)
+    //   }
+    // })
+      },
+      fail: (data, code) => {
+        console.log(`### cipher.aes fail ### ${code}: ${data}`)
+      }
+    })
+
+    // const data = [{
+    //   id: 1
+    // }, {
+    //   id: 2
+    // }]
+
+    // // Encrypt
+    // const ciphertext = CryptoJS.AES.encrypt('my bank password', 'key1111111').toString()
+    // console.log(ciphertext)
+
+    // // Decrypt
+    // const bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123')
+    // const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
+
+    // console.log(decryptedData) // [{id: 1}, {id: 2}]
      
 //   var CryptoJS = require("crypto-js");
 
@@ -56,15 +106,15 @@ Page({
 //   console.log('success')
 // })
 // innerAudioContext.play()
-    audio.src='http://vd3.bdstatic.com/mda-ic7mxzt5cvz6f4y5/mda-ic7mxzt5cvz6f4y5.mp3'
-    audio.autoplay= true
-    console.log(audio.loop)
-    audio.play()
-    setTimeout(res=>{
-audio.stop()
-    }
+//     audio.src='http://vd3.bdstatic.com/mda-ic7mxzt5cvz6f4y5/mda-ic7mxzt5cvz6f4y5.mp3'
+//     audio.autoplay= true
+//     console.log(audio.loop)
+//     audio.play()
+//     setTimeout(res=>{
+// audio.stop()
+//     }
 
-    ,5000)
+//     ,5000)
 //     console.log(my.canIUse('compressVideo'))
 //     my.chooseVideo({
 //       success:res=>{
@@ -300,55 +350,7 @@ audio.stop()
     //   }
     // })
     // record.stop()
-    //   cipher.aes({
-    // action: 'encrypt',
-    // //待加密的文本内容
-    // text: 'hello',
-    // //base64编码后的密钥
-    // key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',
-    // transformation: 'AES/CBC/PKCS5Padding',
-    // ivOffset: 0,
-    // ivLen: 16,
-    // success: data => {
-    //   console.log(`handling success: ${data.text}`)
-
-    // cipher.aes({
-    //   action: 'decrypt',
-    //   //待解密的内容，是base64编码后的一段二进制值
-    //   text:data.text,
-    //   //base64编码后的密钥
-    //   key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',
-    //   transformation: 'AES/CBC/PKCS5Padding',
-    //   ivOffset: 0,
-    //   ivLen: 16,
-    //   success: data => {
-    //    console.log(data)
-    //   },
-    //   fail: (data) => {
-    //     console.log(data)
-    //   }
-    // })
-    //   },
-    //   fail: (data, code) => {
-    //     console.log(`### cipher.aes fail ### ${code}: ${data}`)
-    //   }
-    // })
-
-    // const data = [{
-    //   id: 1
-    // }, {
-    //   id: 2
-    // }]
-
-    // // Encrypt
-    // const ciphertext = CryptoJS.AES.encrypt('my bank password', 'key1111111').toString()
-    // console.log(ciphertext)
-
-    // // Decrypt
-    // const bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123')
-    // const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
-
-    // console.log(decryptedData) // [{id: 1}, {id: 2}]
+   
     //     battery.getStatus({
     //   success: function(data) {
     //     console.log(data)

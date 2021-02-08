@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
-import CryptoJS from 'crypto-js'
+import CryptoJS from './lib/crypto-js'
 
 module.exports = {
   aes(quick_object) {
@@ -16,6 +16,7 @@ module.exports = {
 
     // ///////////////////////
     const transformations = quick_transformation.split('/')
+    console.log(CryptoJS.mode[transformations[1]])
     const options = {
       iv: quick_iv,
       offset: quick_ivOffset,
