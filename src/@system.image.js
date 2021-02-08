@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
 import PROMISE from '../node_modules/oneutil/PROMISE'
@@ -36,12 +37,26 @@ module.exports = {
     const quick_complete = quick_object.complete
     quick_object = null
     PROMISE((SUCCESS) => {
+      let compressLevel
+      if (quick_quality === 75) {
+        compressLevel = 4
+      } else if (quick_quality / 20 <= 1) {
+        compressLevel = 0
+      } else if (quick_quality / 20 > 1 && quick_quality / 20 <= 2) {
+        compressLevel = 1
+      } else if (quick_quality / 20 > 2 && quick_quality / 20 <= 3) {
+        compressLevel = 2
+      } else if (quick_quality / 20 > 3 && quick_quality / 20 <= 4) {
+        compressLevel = 3
+      } else if (quick_quality / 20 > 4 && quick_quality / 20 <= 5) {
+        compressLevel = 4
+      }
       my.compressImage({
-        src: quick_uri,
-        quality: quick_quality,
+        apFilePaths: [quick_uri],
+        compressLevel,
         success: my_res => {
           const quick_res = {
-            uri: my_res.tempFilePath
+            uri: my_res.apFilePaths
           }
           SUCCESS(quick_res)
         }

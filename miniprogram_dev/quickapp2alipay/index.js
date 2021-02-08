@@ -487,8 +487,16 @@ var _system51 = __webpack_require__(65);
 
 var _system52 = _interopRequireDefault(_system51);
 
+var _hapIo = __webpack_require__(67);
+
+var _hapIo2 = _interopRequireDefault(_hapIo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
 exports.default = {
   OnekitApp: _OnekitApp2.default,
   OnekitBehavior: _OnekitBehavior2.default,
@@ -519,13 +527,11 @@ exports.default = {
   '@system.media': _system46.default,
   '@system.image': _system48.default,
   '@system.audio': _system50.default,
-  '@hap.io.Video': _Video2.default,
-  '@system.cipher': _system52.default
+  '@hap.io.Video': _hapIo2.default,
+  '@system.cipher': _system52.default,
+  '@Video': _Video2.default
 
-}; /* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
-/* eslint-disable camelcase */
-/* eslint-disable no-console */
+};
 
 /***/ }),
 /* 34 */
@@ -2512,7 +2518,7 @@ module.exports = {
   /** record.stop */
   stop: function stop() {
     var recorderManager = my.getRecorderManager();
-    recorderManager.start();
+    recorderManager.stop();
   }
 };
 
@@ -2523,14 +2529,31 @@ module.exports = {
 "use strict";
 
 
-/* eslint-disable no-console */
-/* eslint-disable camelcase */
-// import PROMISE from '../node_modules/oneutil/PROMISE'
+var _PROMISE = __webpack_require__(0);
+
+var _PROMISE2 = _interopRequireDefault(_PROMISE);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = {
   /* bluetooth.openAdapter */
   openAdapter: function openAdapter(quick_object) {
-    return my.openBluetoothAdapter(quick_object);
+    var quick_operateAdapter = quick_object.operateAdapter || true;
+    var quick_success = quick_object.success;
+    var quick_fail = quick_object.fail;
+    var quick_complete = quick_object.complete;
+    quick_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.openBluetoothAdapter({
+        autoClose: quick_operateAdapter,
+        success: function success(my_res) {
+          var quick_res = {
+            isSupportBLE: my_res.isSupportBLE
+          };
+          SUCCESS(quick_res);
+        }
+      });
+    }, quick_success, quick_fail, quick_complete);
   },
 
   /**
@@ -2568,48 +2591,170 @@ module.exports = {
   /** bluetooth.getDevices */
 
   getDevices: function getDevices(quick_object) {
-    return my.getBluetoothDevices(quick_object);
+    var quick_success = quick_object.success;
+    var quick_fail = quick_object.fail;
+    var quick_complete = quick_object.complete;
+    quick_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.getBluetoothDevices({
+        success: function success(my_res) {
+          var devices = my_res.devices.map(function (device) {
+            return {
+              name: device.name,
+              deviceId: device.deviceId,
+              RSSI: device.RSSI,
+              advertisData: device.advertisData,
+              advertisServiceUUIDs: device.manufacturerData,
+              localName: device.localName
+
+            };
+          });
+          var quick_res = {
+            devices: devices
+          };
+          SUCCESS(quick_res);
+        }
+      });
+    }, quick_success, quick_fail, quick_complete);
   },
 
   /** bluetooth.ondevicefound */
 
   set ondevicefound(callback) {
-    return my.onBluetoothDeviceFound(callback);
+    my.onBluetoothDeviceFound(function (my_res) {
+      var devices = my_res.devices.map(function (device) {
+        return {
+          name: device.name,
+          deviceId: device.deviceId,
+          RSSI: device.RSSI,
+          advertisData: device.advertisData,
+          advertisServiceUUIDs: device.manufacturerData,
+          localName: device.localName
+
+        };
+      });
+      callback(devices);
+    });
   },
   /** bluetooth.getConnectedDevices */
 
   getConnectedDevices: function getConnectedDevices(quick_object) {
-    return my.getConnectedBluetoothDevices(quick_object);
+    var quick_services = quick_object.services;
+    var quick_success = quick_object.success;
+    var quick_fail = quick_object.fail;
+    var quick_complete = quick_object.complete;
+    quick_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.getConnectedBluetoothDevices({
+        deviceId: quick_services[0],
+        success: function success(my_res) {
+          var quick_res = {
+            devices: my_res.devices
+
+          };
+          SUCCESS(quick_res);
+        }
+      });
+    }, quick_success, quick_fail, quick_complete);
   },
 
   /** bluetooth.createBLEConnection */
 
   createBLEConnection: function createBLEConnection(quick_object) {
-    return my.createBLEConnection(quick_object);
+    return my.connectBLEDevice(quick_object);
   },
 
   /** bluetooth.closeBLEConnection */
 
   closeBLEConnection: function closeBLEConnection(quick_object) {
-    return my.closeBLEConnection(quick_object);
+    return my.disconnectBLEDevice(quick_object);
   },
 
   /** bluetooth.getBLEDeviceServices */
 
   getBLEDeviceServices: function getBLEDeviceServices(quick_object) {
-    return my.getBLEDeviceServices(quick_object);
+    var quick_deviceId = quick_object.deviceId;
+    var quick_success = quick_object.success;
+    var quick_fail = quick_object.fail;
+    var quick_complete = quick_object.complete;
+    quick_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.getBLEDeviceServices({
+        deviceId: quick_deviceId,
+        success: function success(my_res) {
+          var services = my_res.services.map(function (service) {
+            return {
+              uuid: service.serviceId,
+              isPrimary: service.isPrimary
+            };
+          });
+          var quick_res = {
+            services: services
+          };
+          SUCCESS(quick_res);
+        }
+      });
+    }, quick_success, quick_fail, quick_complete);
   },
 
   /** bluetooth.getBLEDeviceCharacteristics */
 
   getBLEDeviceCharacteristics: function getBLEDeviceCharacteristics(quick_object) {
-    return my.getBLEDeviceCharacteristics(quick_object);
+    var quick_deviceId = quick_object.deviceId;
+    var quick_serviceId = quick_object.serviceId;
+    var quick_success = quick_object.success;
+    var quick_fail = quick_object.fail;
+    var quick_complete = quick_object.complete;
+    quick_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.getBLEDeviceCharacteristics({
+        deviceId: quick_deviceId,
+        serviceId: quick_serviceId,
+        success: function success(my_res) {
+          var characteristics = my_res.characteristics.map(function (characteristic) {
+            return {
+              uuid: characteristic.serviceId,
+              properties: characteristic.properties,
+              characteristicId: characteristic.characteristicId,
+              value: characteristic.value
+            };
+          });
+          var quick_res = {
+            characteristics: characteristics
+          };
+          SUCCESS(quick_res);
+        }
+      });
+    }, quick_success, quick_fail, quick_complete);
   },
 
   /** bluetooth.readBLECharacteristicValue */
 
   readBLECharacteristicValue: function readBLECharacteristicValue(quick_object) {
-    return my.readBLECharacteristicValue(quick_object);
+    var quick_deviceId = quick_object.deviceId;
+    var quick_serviceId = quick_object.serviceId;
+    var quick_characteristicId = quick_object.characteristicId;
+    var quick_success = quick_object.success;
+    var quick_fail = quick_object.fail;
+    var quick_complete = quick_object.complete;
+    quick_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.readBLECharacteristicValue({
+        deviceId: quick_deviceId,
+        serviceId: quick_serviceId,
+        characteristicId: quick_characteristicId,
+        success: function success(my_res) {
+          var quick_res = {
+            characteristic: {
+              characteristicId: my_res.characteristicId,
+              serviceId: my_res.serviceId,
+              value: my_res.value
+            }
+          };
+          SUCCESS(quick_res);
+        }
+      });
+    }, quick_success, quick_fail, quick_complete);
   },
 
   /** bluetooth.writeBLECharacteristicValue */
@@ -2621,6 +2766,9 @@ module.exports = {
   /** bluetooth.notifyBLECharacteristicValueChange */
 
   notifyBLECharacteristicValueChange: function notifyBLECharacteristicValueChange(quick_object) {
+    var key = 'descriptorId';
+    var value = '00002902-0000-10008000-00805f9b34fb';
+    quick_object[key] = value;
     return my.notifyBLECharacteristicValueChange(quick_object);
   },
 
@@ -2634,7 +2782,8 @@ module.exports = {
   set onbleconnectionstatechange(callback) {
     return my.onBLEConnectionStateChange(callback);
   }
-};
+}; /* eslint-disable no-console */
+/* eslint-disable camelcase */
 
 /***/ }),
 /* 60 */
@@ -2749,7 +2898,7 @@ module.exports = {
         count: 1,
         success: function success(my_res) {
           var quick_res = {
-            tempFilePaths: my_res.tempFilePaths,
+            apFilePaths: my_res.apFilePaths,
             uri: my_res.tempFiles[0].path,
             size: my_res.tempFiles[0].size
           };
@@ -2777,7 +2926,7 @@ module.exports = {
             };
           });
           var quick_res = {
-            uris: my_res.tempFilePaths,
+            uris: my_res.apFilePaths,
             files: quick_files
           };
           SUCCESS(quick_res);
@@ -2819,40 +2968,16 @@ module.exports = {
     quick_object = null;
     // const quick_cancel = quick_object.cancel
     (0, _PROMISE2.default)(function (SUCCESS) {
-      my.chooseMedia({
-        mediaType: ['video'],
+      my.chooseVideo({
         success: function success(my_res) {
-          var quick_files = my_res.tempFiles.map(function (file) {
-            return {
-              uri: file.tempFilePath,
-              size: file.size,
-              duration: file.duration,
-              height: file.height,
-              width: file.width,
-              thumbTempFilePath: file.thumbTempFilePath
-            };
-          });
-          var quick_uris = [];
-          for (var _iterator = my_res.tempFiles, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-            var _ref;
-
-            if (_isArray) {
-              if (_i >= _iterator.length) break;
-              _ref = _iterator[_i++];
-            } else {
-              _i = _iterator.next();
-              if (_i.done) break;
-              _ref = _i.value;
-            }
-
-            var value = _ref;
-
-            quick_uris.push(value.tempFilePath);
-          }
+          var uris = [my_res.tempFilePath];
+          var files = [{
+            uri: my_res.tempFilePath,
+            size: my_res.size
+          }];
           var quick_res = {
-            uris: quick_uris,
-            files: quick_files,
-            type: my_res.type
+            uris: uris,
+            files: files
           };
           SUCCESS(quick_res);
         }
@@ -2862,49 +2987,51 @@ module.exports = {
 
 
   /** media.pickFile */
-  pickFile: function pickFile(quick_object) {
-    if (!quick_object) {
-      return;
-    }
-    var quick_success = quick_object.success;
-    var quick_fail = quick_object.fail;
-    var quick_complete = quick_object.complete;
-    quick_object = null;
-    // const quick_cancel = quick_object.cancel
-    (0, _PROMISE2.default)(function (SUCCESS) {
-      my.chooseMessageFile({
-        count: 1,
-        success: function success(my_res) {
-          var quick_res = {
-            tempFiles: my_res.tempFiles,
-            uri: my_res.tempFiles[0].path,
-            size: my_res.tempFiles[0].size,
-            name: my_res.tempFiles[0].name
-          };
-          SUCCESS(quick_res);
-        }
-      });
-    }, quick_success, quick_fail, quick_complete);
+  pickFile: function pickFile() {
+    // if (!quick_object) {
+    //   return
+    // }
+    // const quick_success = quick_object.success
+    // const quick_fail = quick_object.fail
+    // const quick_complete = quick_object.complete
+    // quick_object = null
+    // // const quick_cancel = quick_object.cancel
+    // PROMISE((SUCCESS) => {
+    //   my.chooseMessageFile({
+    //     count: 1,
+    //     success: my_res => {
+    //       const quick_res = {
+    //         tempFiles: my_res.tempFiles,
+    //         uri: my_res.tempFiles[0].path,
+    //         size: my_res.tempFiles[0].size,
+    //         name: my_res.tempFiles[0].name,
+    //       }
+    //       SUCCESS(quick_res)
+    //     }
+    //   })
+    // }, quick_success, quick_fail, quick_complete)
+    return console.warn('pickFile is not support');
   },
 
 
   /** media.saveToPhotosAlbum */
-  saveToPhotosAlbum: function saveToPhotosAlbum(quick_object) {
-    if (!quick_object) {
-      return;
-    }
-    var quick_success = quick_object.success;
-    var quick_fail = quick_object.fail;
-    var quick_complete = quick_object.complete;
-    var quick_uri = quick_object.uri;
-    quick_object = null;
-    var my_object = {
-      filePath: quick_uri,
-      success: quick_success,
-      fail: quick_fail,
-      complete: quick_complete
-    };
-    my.saveImageToPhotosAlbum(my_object);
+  saveToPhotosAlbum: function saveToPhotosAlbum() {
+    // if (!quick_object) {
+    //   return
+    // }
+    // const quick_success = quick_object.success
+    // const quick_fail = quick_object.fail
+    // const quick_complete = quick_object.complete
+    // const quick_uri = quick_object.uri
+    // quick_object = null
+    // const my_object = {
+    //   filePath: quick_uri,
+    //   success: quick_success,
+    //   fail: quick_fail,
+    //   complete: quick_complete,
+    // }
+    // my.saveImageToPhotosAlbum(my_object)
+    return console.warn('saveToPhotosAlbum is not support');
   },
 
 
@@ -2920,6 +3047,8 @@ module.exports = {
     var my_object = {
       urls: quick_uris,
       current: quick_current,
+      enablesavephoto: true,
+      enableShowPhotoDownload: true,
       success: quick_success,
       fail: quick_fail,
       complete: quick_complete
@@ -2985,12 +3114,26 @@ module.exports = {
     var quick_complete = quick_object.complete;
     quick_object = null;
     (0, _PROMISE2.default)(function (SUCCESS) {
+      var compressLevel = void 0;
+      if (quick_quality === 75) {
+        compressLevel = 4;
+      } else if (quick_quality / 20 <= 1) {
+        compressLevel = 0;
+      } else if (quick_quality / 20 > 1 && quick_quality / 20 <= 2) {
+        compressLevel = 1;
+      } else if (quick_quality / 20 > 2 && quick_quality / 20 <= 3) {
+        compressLevel = 2;
+      } else if (quick_quality / 20 > 3 && quick_quality / 20 <= 4) {
+        compressLevel = 3;
+      } else if (quick_quality / 20 > 4 && quick_quality / 20 <= 5) {
+        compressLevel = 4;
+      }
       my.compressImage({
-        src: quick_uri,
-        quality: quick_quality,
+        apFilePaths: [quick_uri],
+        compressLevel: compressLevel,
         success: function success(my_res) {
           var quick_res = {
-            uri: my_res.tempFilePath
+            uri: my_res.apFilePaths
           };
           SUCCESS(quick_res);
         }
@@ -3009,7 +3152,8 @@ module.exports = {
   setExifAttributes: function setExifAttributes() {
     console.warn('setExifAttributes is not support');
   }
-}; /* eslint-disable no-console */
+}; /* eslint-disable no-mixed-operators */
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 
 /***/ }),
@@ -3026,44 +3170,20 @@ module.exports = {
 
 module.exports = {
   play: function play() {
-    getApp().onekit_play = 'play';
-    if (getApp().onekit_src) {
-      this.inneraudioContext.src = getApp().onekit_src;
-    }
-    if (getApp().onekit_currentTime) {
-      this.inneraudioContext.currentTime = getApp().onekit_currentTime;
-    }
-    if (getApp().onekit_autoplay) {
-      this.inneraudioContext.autoplay = getApp().onekit_autoplay;
-    } else {
-      this.inneraudioContext.autoplay = false;
-    }
-    if (getApp().onekit_loop) {
-      this.inneraudioContext.loop = getApp().onekit_loop;
-    } else {
-      this.inneraudioContext.loop = false;
-    }
-    if (getApp().onekit_volume) {
-      this.inneraudioContext.volume = getApp().onekit_volume;
-    }
-    if (getApp().onekit_muted) {
-      this.inneraudioContext.obeyMuteSwitch = getApp().onekit_muted;
-    } else {
-      this.inneraudioContext.obeyMuteSwitch = false;
-    }
+    getApp().onekit_inneraudioContextplay = 'play';
     this.inneraudioContext.play();
   },
   pause: function pause() {
-    getApp().onekit_play = 'pause';
+    getApp().onekit_inneraudioContextplay = 'pause';
     this.inneraudioContext.pause();
   },
   stop: function stop() {
-    getApp().onekit_play = 'stop';
+    getApp().onekit_inneraudioContextplay = 'stop';
     this.inneraudioContext.stop();
   },
   getPlayState: function getPlayState() {
     var state = void 0;
-    switch (getApp().onekit_play) {
+    switch (getApp().onekit_inneraudioContextplay) {
       case 'play':
         state = 'play';
         break;
@@ -3082,14 +3202,12 @@ module.exports = {
 
 
   set src(src) {
-    getApp().onekit_src = src;
     var InnerAudioContext = my.createInnerAudioContext();
     this.inneraudioContext = InnerAudioContext;
-    this.inneraudioContext.src = InnerAudioContext;
+    this.inneraudioContext.src = src;
   },
 
   set currentTime(currentTime) {
-    getApp().onekit_currentTime = currentTime;
     this.inneraudioContext.currentTime = currentTime;
   },
   get currentTime() {
@@ -3105,8 +3223,7 @@ module.exports = {
   },
 
   set autoplay(autoplay) {
-    getApp().onekit_autoplay = autoplay;
-    my.createInnerAudioContext().autoplay = autoplay;
+    this.inneraudioContext.autoplay = autoplay;
   },
   get autoplay() {
     if (getApp().onekit_autoplay) {
@@ -3117,37 +3234,34 @@ module.exports = {
   },
 
   set loop(loop) {
-    getApp().onekit_loop = loop;
-    my.createInnerAudioContext().loop = loop;
+    this.inneraudioContext.loop = loop;
   },
   get loop() {
-    if (getApp().onekit_loop) {
-      return getApp().onekit_loop;
+    if (this.inneraudioContext.loop) {
+      return this.inneraudioContext.loop;
     } else {
       return false;
     }
   },
 
   set volume(volume) {
-    getApp().onekit_volume = volume;
-    my.createInnerAudioContext().volume = volume;
+    this.inneraudioContext.volume = volume;
   },
   get volume() {
-    if (getApp().onekit_volume) {
-      return getApp().onekit_volume;
+    if (this.inneraudioContext.volume) {
+      return this.inneraudioContext.volume;
     } else {
       return 1;
     }
   },
 
   set muted(muted) {
-    getApp().onekit_muted = muted;
-    my.createInnerAudioContext().obeyMuteSwitch = muted;
+    this.inneraudioContext.obeyMuteSwitch = muted;
   },
 
   get notificationVisible() {
-    if (my.createInnerAudioContext().paused) {
-      return my.createInnerAudioContext().paused;
+    if (this.inneraudioContext.obeyMuteSwitch) {
+      return this.inneraudioContext.obeyMuteSwitch;
     } else {
       return true;
     }
@@ -3179,16 +3293,12 @@ module.exports = {
 
 exports.__esModule = true;
 
-var _PROMISE = __webpack_require__(0);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _PROMISE2 = _interopRequireDefault(_PROMISE);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /* eslint-disable class-methods-use-this */
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
-
+// import PROMISE from '../../node_modules/oneutil/PROMISE'
 
 var Video = function () {
   function Video(object) {
@@ -3197,63 +3307,65 @@ var Video = function () {
     this.object = object;
   }
 
-  Video.prototype.compressVideo = function compressVideo(quick_object) {
-    var quick_uri = this.object.uri;
-    var quick_bitrate = this.object.bitrate || 0.5;
-    var quick_framerate = this.object.framerate || 30;
-    var quick_success = quick_object.success;
-    var quick_fail = quick_object.fail;
-    var quick_complete = quick_object.complete;
-    quick_object = null;
-    (0, _PROMISE2.default)(function (SUCCESS) {
-      my.compressVideo({
-        src: quick_uri,
-        quality: 'medium',
-        bitrate: quick_bitrate,
-        fps: quick_framerate,
-        resolution: 0.5,
-        success: function success(my_res) {
-          var quick_res = {
-            uri: my_res.tempFilePath,
-            size: my_res.size
-          };
-          SUCCESS(quick_res);
-        },
-        fail: function fail(res) {
-          console.log(res);
-        }
-      });
-    }, quick_success, quick_fail, quick_complete);
+  Video.prototype.compressVideo = function compressVideo() {
+    // const quick_uri = this.object.uri
+    // const quick_bitrate = this.object.bitrate || 0.5
+    // const quick_framerate = this.object.framerate || 30
+    // const quick_success = quick_object.success
+    // const quick_fail = quick_object.fail
+    // const quick_complete = quick_object.complete
+    // quick_object = null
+    // PROMISE((SUCCESS) => {
+    //   my.compressVideo({
+    //     src: quick_uri,
+    //     quality: 'medium',
+    //     bitrate: quick_bitrate,
+    //     fps: quick_framerate,
+    //     resolution: 0.5,
+    //     success: my_res => {
+    //       const quick_res = {
+    //         uri: my_res.tempFilePath,
+    //         size: my_res.size
+    //       }
+    //       SUCCESS(quick_res)
+    //     },
+    //     fail: res => {
+    //       console.log(res)
+    //     }
+    //   })
+    // }, quick_success, quick_fail, quick_complete)
+    return console.warn('compressVideo is not support');
   };
 
-  Video.prototype.getVideoInfo = function getVideoInfo(quick_object) {
-    var quick_uri = quick_object.uri;
-    var quick_success = quick_object.success;
-    var quick_fail = quick_object.fail;
-    var quick_complete = quick_object.complete;
-    quick_object = null;
-    (0, _PROMISE2.default)(function (SUCCESS) {
-      my.getVideoInfo({
-        src: quick_uri,
-        success: function success(my_res) {
-          var quick_res = {
-            uri: quick_uri,
-            size: my_res.size,
-            height: my_res.height,
-            width: my_res.width,
-            bitrate: my_res.bitrate,
-            framerate: my_res.fps,
-            orientation: my_res.orientation,
-            type: my_res.type,
-            duration: my_res.duration
-          };
-          SUCCESS(quick_res);
-        },
-        fail: function fail(res) {
-          console.log(res);
-        }
-      });
-    }, quick_success, quick_fail, quick_complete);
+  Video.prototype.getVideoInfo = function getVideoInfo() {
+    // const quick_uri = quick_object.uri
+    // const quick_success = quick_object.success
+    // const quick_fail = quick_object.fail
+    // const quick_complete = quick_object.complete
+    // quick_object = null
+    // PROMISE((SUCCESS) => {
+    //   my.getVideoInfo({
+    //     src: quick_uri,
+    //     success: my_res => {
+    //       const quick_res = {
+    //         uri: quick_uri,
+    //         size: my_res.size,
+    //         height: my_res.height,
+    //         width: my_res.width,
+    //         bitrate: my_res.bitrate,
+    //         framerate: my_res.fps,
+    //         orientation: my_res.orientation,
+    //         type: my_res.type,
+    //         duration: my_res.duration,
+    //       }
+    //       SUCCESS(quick_res)
+    //     },
+    //     fail: res => {
+    //       console.log(res)
+    //     }
+    //   })
+    // }, quick_success, quick_fail, quick_complete)
+    return console.warn('getVideoInfo is not support');
   };
 
   return Video;
@@ -3318,6 +3430,26 @@ module.exports = {
 /***/ (function(module, exports) {
 
 module.exports = require("crypto-js");
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/* eslint-disable no-console */
+/* eslint-disable consistent-return */
+/* eslint-disable camelcase */
+// import PROMISE from '../node_modules/oneutil/PROMISE'
+
+module.exports = {
+  /* storage.set/// */
+
+  getVideoInfo: function getVideoInfo() {
+    return console.warn('getVideoInfo si not support');
+  }
+};
 
 /***/ })
 /******/ ]);

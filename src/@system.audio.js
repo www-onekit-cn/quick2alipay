@@ -6,47 +6,23 @@
 module.exports = {
 
   play() {
-    getApp().onekit_play = 'play'
-    if (getApp().onekit_src) {
-      this.inneraudioContext.src = getApp().onekit_src
-    }
-    if (getApp().onekit_currentTime) {
-      this.inneraudioContext.currentTime = getApp().onekit_currentTime
-    }
-    if (getApp().onekit_autoplay) {
-      this.inneraudioContext.autoplay = getApp().onekit_autoplay
-    } else {
-      this.inneraudioContext.autoplay = false
-    }
-    if (getApp().onekit_loop) {
-      this.inneraudioContext.loop = getApp().onekit_loop
-    } else {
-      this.inneraudioContext.loop = false
-    }
-    if (getApp().onekit_volume) {
-      this.inneraudioContext.volume = getApp().onekit_volume
-    }
-    if (getApp().onekit_muted) {
-      this.inneraudioContext.obeyMuteSwitch = getApp().onekit_muted
-    } else {
-      this.inneraudioContext.obeyMuteSwitch = false
-    }
+    getApp().onekit_inneraudioContextplay = 'play'
     this.inneraudioContext.play()
   },
 
   pause() {
-    getApp().onekit_play = 'pause'
+    getApp().onekit_inneraudioContextplay = 'pause'
     this.inneraudioContext.pause()
   },
 
   stop() {
-    getApp().onekit_play = 'stop'
+    getApp().onekit_inneraudioContextplay = 'stop'
     this.inneraudioContext.stop()
   },
 
   getPlayState() {
     let state
-    switch (getApp().onekit_play) {
+    switch (getApp().onekit_inneraudioContextplay) {
       case 'play':
         state = 'play'
         break
@@ -64,14 +40,12 @@ module.exports = {
   },
 
   set src(src) {
-    getApp().onekit_src = src
     const InnerAudioContext = my.createInnerAudioContext()
     this.inneraudioContext = InnerAudioContext
-    this.inneraudioContext.src = InnerAudioContext
+    this.inneraudioContext.src = src
   },
 
   set currentTime(currentTime) {
-    getApp().onekit_currentTime = currentTime
     this.inneraudioContext.currentTime = currentTime
   },
   get currentTime() {
@@ -87,8 +61,7 @@ module.exports = {
   },
 
   set autoplay(autoplay) {
-    getApp().onekit_autoplay = autoplay
-    my.createInnerAudioContext().autoplay = autoplay
+    this.inneraudioContext.autoplay = autoplay
   },
   get autoplay() {
     if (getApp().onekit_autoplay) {
@@ -99,37 +72,34 @@ module.exports = {
   },
 
   set loop(loop) {
-    getApp().onekit_loop = loop
-    my.createInnerAudioContext().loop = loop
+    this.inneraudioContext.loop = loop
   },
   get loop() {
-    if (getApp().onekit_loop) {
-      return getApp().onekit_loop
+    if (this.inneraudioContext.loop) {
+      return this.inneraudioContext.loop
     } else {
       return false
     }
   },
 
   set volume(volume) {
-    getApp().onekit_volume = volume
-    my.createInnerAudioContext().volume = volume
+    this.inneraudioContext.volume = volume
   },
   get volume() {
-    if (getApp().onekit_volume) {
-      return getApp().onekit_volume
+    if (this.inneraudioContext.volume) {
+      return this.inneraudioContext.volume
     } else {
       return 1
     }
   },
 
   set muted(muted) {
-    getApp().onekit_muted = muted
-    my.createInnerAudioContext().obeyMuteSwitch = muted
+    this.inneraudioContext.obeyMuteSwitch = muted
   },
 
   get notificationVisible() {
-    if (my.createInnerAudioContext().paused) {
-      return my.createInnerAudioContext().paused
+    if (this.inneraudioContext.obeyMuteSwitch) {
+      return this.inneraudioContext.obeyMuteSwitch
     } else {
       return true
     }

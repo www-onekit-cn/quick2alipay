@@ -32,8 +32,9 @@ import system_zip from './@system.zip'
 import system_media from './@system.media'
 import system_image from './@system.image'
 import system_audio from './@system.audio'
-import hap_io_Video from './api/Video'
+import Video from './api/Video'
 import system_cipher from './@system.cipher'
+import hap_io_Video from './@hap.io.Video'
 
 
 export default {
@@ -68,5 +69,6 @@ export default {
   '@system.audio': system_audio,
   '@hap.io.Video': hap_io_Video,
   '@system.cipher': system_cipher,
+  '@Video': Video,
 
 }

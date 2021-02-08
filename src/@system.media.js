@@ -58,7 +58,7 @@ module.exports = {
         count: 1,
         success: my_res => {
           const quick_res = {
-            tempFilePaths: my_res.tempFilePaths,
+            apFilePaths: my_res.apFilePaths,
             uri: my_res.tempFiles[0].path,
             size: my_res.tempFiles[0].size
           }
@@ -83,7 +83,7 @@ module.exports = {
             size: file.size
           }))
           const quick_res = {
-            uris: my_res.tempFilePaths,
+            uris: my_res.apFilePaths,
             files: quick_files
           }
           SUCCESS(quick_res)
@@ -124,25 +124,16 @@ module.exports = {
     quick_object = null
     // const quick_cancel = quick_object.cancel
     PROMISE((SUCCESS) => {
-      my.chooseMedia({
-        mediaType: ['video'],
+      my.chooseVideo({
         success: my_res => {
-          const quick_files = my_res.tempFiles.map(file => ({
-            uri: file.tempFilePath,
-            size: file.size,
-            duration: file.duration,
-            height: file.height,
-            width: file.width,
-            thumbTempFilePath: file.thumbTempFilePath,
-          }))
-          const quick_uris = []
-          for (const value of my_res.tempFiles) {
-            quick_uris.push(value.tempFilePath)
-          }
+          const uris = [my_res.tempFilePath]
+          const files = [{
+            uri: my_res.tempFilePath,
+            size: my_res.size,
+          }]
           const quick_res = {
-            uris: quick_uris,
-            files: quick_files,
-            type: my_res.type
+            uris,
+            files
           }
           SUCCESS(quick_res)
         }
@@ -152,48 +143,50 @@ module.exports = {
 
 
   /** media.pickFile */
-  pickFile(quick_object) {
-    if (!quick_object) {
-      return
-    }
-    const quick_success = quick_object.success
-    const quick_fail = quick_object.fail
-    const quick_complete = quick_object.complete
-    quick_object = null
-    // const quick_cancel = quick_object.cancel
-    PROMISE((SUCCESS) => {
-      my.chooseMessageFile({
-        count: 1,
-        success: my_res => {
-          const quick_res = {
-            tempFiles: my_res.tempFiles,
-            uri: my_res.tempFiles[0].path,
-            size: my_res.tempFiles[0].size,
-            name: my_res.tempFiles[0].name,
-          }
-          SUCCESS(quick_res)
-        }
-      })
-    }, quick_success, quick_fail, quick_complete)
+  pickFile() {
+    // if (!quick_object) {
+    //   return
+    // }
+    // const quick_success = quick_object.success
+    // const quick_fail = quick_object.fail
+    // const quick_complete = quick_object.complete
+    // quick_object = null
+    // // const quick_cancel = quick_object.cancel
+    // PROMISE((SUCCESS) => {
+    //   my.chooseMessageFile({
+    //     count: 1,
+    //     success: my_res => {
+    //       const quick_res = {
+    //         tempFiles: my_res.tempFiles,
+    //         uri: my_res.tempFiles[0].path,
+    //         size: my_res.tempFiles[0].size,
+    //         name: my_res.tempFiles[0].name,
+    //       }
+    //       SUCCESS(quick_res)
+    //     }
+    //   })
+    // }, quick_success, quick_fail, quick_complete)
+    return console.warn('pickFile is not support')
   },
 
   /** media.saveToPhotosAlbum */
-  saveToPhotosAlbum(quick_object) {
-    if (!quick_object) {
-      return
-    }
-    const quick_success = quick_object.success
-    const quick_fail = quick_object.fail
-    const quick_complete = quick_object.complete
-    const quick_uri = quick_object.uri
-    quick_object = null
-    const my_object = {
-      filePath: quick_uri,
-      success: quick_success,
-      fail: quick_fail,
-      complete: quick_complete,
-    }
-    my.saveImageToPhotosAlbum(my_object)
+  saveToPhotosAlbum() {
+    // if (!quick_object) {
+    //   return
+    // }
+    // const quick_success = quick_object.success
+    // const quick_fail = quick_object.fail
+    // const quick_complete = quick_object.complete
+    // const quick_uri = quick_object.uri
+    // quick_object = null
+    // const my_object = {
+    //   filePath: quick_uri,
+    //   success: quick_success,
+    //   fail: quick_fail,
+    //   complete: quick_complete,
+    // }
+    // my.saveImageToPhotosAlbum(my_object)
+    return console.warn('saveToPhotosAlbum is not support')
   },
 
   /** media.previewImage */
@@ -208,6 +201,8 @@ module.exports = {
     const my_object = {
       urls: quick_uris,
       current: quick_current,
+      enablesavephoto: true,
+      enableShowPhotoDownload: true,
       success: quick_success,
       fail: quick_fail,
       complete: quick_complete,

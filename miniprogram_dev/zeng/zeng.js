@@ -1,5 +1,5 @@
 import quickapp2alipay from '../quickapp2alipay/index'
-import CryptoJS from '../node_modules/crypto-js'
+// import CryptoJS from '../node_modules/crypto-js'
 const router = quickapp2alipay['@system.router']
 const media = quickapp2alipay['@system.media']
 const configuration = quickapp2alipay['@system.configuration']
@@ -20,61 +20,286 @@ const device = quickapp2alipay['@system.device']
 const brightness = quickapp2alipay['@system.brightness']
 const battery = quickapp2alipay['@system.battery']
 const cipher = quickapp2alipay['@system.cipher']
-const record  = quickapp2alipay['@system.record']
-const wifi  = quickapp2alipay['@system.wifi']
+const record = quickapp2alipay['@system.record']
+const wifi = quickapp2alipay['@system.wifi']
+const bluetooth = quickapp2alipay['@system.bluetooth']
+const zip = quickapp2alipay['@system.zip']
+const image = quickapp2alipay['@system.image']
+//const Video = quickapp2alipay['@hap.io.Video']
+const Video = quickapp2alipay['@Video']
+const audio = quickapp2alipay['@system.audio']
+
+
 
 Page({
   onLoad(e) {
-//     console.log(my.canIUse('connectWifi'))
-// //     wifi.onscanned = function(data) {
-// //   console.log(data)
-// // }
-// my.startWifi({
-//   success:res=>{
-//      my.getConnectedWifi({
+     
+//   var CryptoJS = require("crypto-js");
+
+// var data = [{id: 1}, {id: 2}]
+
+// // Encrypt
+// var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret key 123').toString();
+
+// // Decrypt
+// var bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
+// var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+// console.log(decryptedData);
+
+//     const innerAudioContext = my.createInnerAudioContext(); 
+
+// innerAudioContext.src = 'http://vd3.bdstatic.com/mda-ic7mxzt5cvz6f4y5/mda-ic7mxzt5cvz6f4y5.mp3'
+// innerAudioContext.autoplay = true
+
+// innerAudioContext.onPlay(res=>{
+//   console.log('success')
+// })
+// innerAudioContext.play()
+    audio.src='http://vd3.bdstatic.com/mda-ic7mxzt5cvz6f4y5/mda-ic7mxzt5cvz6f4y5.mp3'
+    audio.autoplay= true
+    console.log(audio.loop)
+    audio.play()
+    setTimeout(res=>{
+audio.stop()
+    }
+
+    ,5000)
+//     console.log(my.canIUse('compressVideo'))
+//     my.chooseVideo({
+//       success:res=>{
+// var mVideoTask = new Video({
+//   uri: res.apFilePath
+// })
+//         mVideoTask.compressVideo({
 //   success: function(data) {
-//     console.log(data)
-//   },
-//   fail: function(data) {
-//     console.log(data)
-//   }
-// })
-//     console.log(res,'success')
-//   },fail:err=>{
-//     console.log(err,'error')
-//   }
-// })
-var obj = {}; //或者 var obj=new Object();
-var key = "name";
-var value = "张三丰"
-obj[key] = value;
-obj.name = "sss"
-console.log(obj)
-   
-//     wifi.connect({
-//   SSID: '',
-//   BSSID: '',
-//   success: function() {
-//     console.log('connect wifi success')
-//   },
-//   fail: function(data) {
-//     console.log(data)
-//   }
-// })
-//     record.start({
-//   duration: 10000,
-//   sampleRate: 8000,
-//   numberOfChannels: 1,
-//   encodeBitRate: 16000,
-//   format: 'aac',
-//   success: function(data) {
-//     console.log(data)
+//     console.log(data
+      
+//     )
 //   },
 //   fail: function(data, code) {
-//     console.log(`handling fail, code = ${code}`)
+//     console.log(data)
 //   }
 // })
-// record.stop()
+
+        
+//       }
+//     })
+    // let x = 3
+    // if(x >= 1 && x <= 2) {
+    //   console.log('ssssss')
+    // }
+    // my.chooseImage({
+    //   success: res => {
+    //     image.compressImage({
+    //       uri: res.apFilePaths[0],
+    //       quality: 80,
+    //       ratio: 2, // 变为原图的1/2大小
+    //       format: 'JPEG',
+    //       success: function (data) {
+    //         console.log(data, 'success')
+    //       },
+    //       fail: function (data) {
+    //         console.log(data)
+    //       }
+    //     })
+
+    //   }
+    // })
+
+
+    //     console.log(my.canIUse('saveToPhotosAlbum'))
+    //     media.pickVideos({
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+
+    // my.chooseVideo({
+    //   success:res=>{
+    //     console.log(res)
+    //   }
+    // })
+    //     media.pickVideo({
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    // media.pickVideos({
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data) {
+    //     console.log(data)
+    //   }
+    // })
+    //     media.pickImages({
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    // my.chooseImage({
+    //   success:res=>{
+    //     console.log(res)
+    //   }
+    // })
+    //     media.pickImage({
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    //     media.takeVideo({
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    // const res = my.createCameraContext()
+    // res.takePhoto()
+    //     bluetooth.openAdapter({
+    //   success: function(data) {
+    //     console.log('success',data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+
+    // })
+    // bluetooth.getAdapterState({
+    //   success: function(data) {
+    //     console.log(data
+
+    //     )
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   },
+    //   complete: function() {
+    //     console.log('complete')
+    //   }
+    // })
+    // bluetooth.startDevicesDiscovery({
+
+    //   success: function(data) {
+    //     console.log('success',data)
+    //   }
+    // })
+    // bluetooth.stopDevicesDiscovery({
+    //   success: function(data) {
+    //     console.log('success',data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    // my.onBluetoothDeviceFound(res=>{
+    //   console.log(res)
+    // })
+    // bluetooth.ondevicefound = function(data) {
+    //   console.log(data)
+
+    // }
+    // my.getBluetoothDevices({
+    //   success: (res) => {
+    //     console.log(res)
+    //   },
+    //   fail:(res) => {
+    //   }
+    // });
+    // bluetooth.getDevices({
+    //   success: function(data) {
+    //     console.log(data)
+
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   },
+    //   complete: function() {
+    //     console.log('complete')
+    //   }
+    // })
+    // my.onBluetoothAdapterStateChange(res=>{
+    //   console.log(res)
+    // })
+    // bluetooth.onadapterstatechange = function(data) {
+    //   console.log(data)
+    // }
+
+    // bluetooth.closeAdapter({
+    //   success: function(data) {
+    //     console.log('success',data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+
+    // })
+
+
+    //     console.log(my.canIUse('connectWifi'))
+    // //     wifi.onscanned = function(data) {
+    // //   console.log(data)
+    // // }
+    // my.startWifi({
+    //   success:res=>{
+    //      my.getConnectedWifi({
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data) {
+    //     console.log(data)
+    //   }
+    // })
+    //     console.log(res,'success')
+    //   },fail:err=>{
+    //     console.log(err,'error')
+    //   }
+    // })
+    // var obj = {}; //或者 var obj=new Object();
+    // var key = "name";
+    // var value = "张三丰"
+    // obj[key] = value;
+    // obj.name = "sss"
+    // console.log(obj)
+
+    //     wifi.connect({
+    //   SSID: '',
+    //   BSSID: '',
+    //   success: function() {
+    //     console.log('connect wifi success')
+    //   },
+    //   fail: function(data) {
+    //     console.log(data)
+    //   }
+    // })
+    //     record.start({
+    //   duration: 10000,
+    //   sampleRate: 8000,
+    //   numberOfChannels: 1,
+    //   encodeBitRate: 16000,
+    //   format: 'aac',
+    //   success: function(data) {
+    //     console.log(data)
+    //   },
+    //   fail: function(data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+    // record.stop()
     //   cipher.aes({
     // action: 'encrypt',
     // //待加密的文本内容
